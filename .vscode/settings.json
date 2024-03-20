@@ -1,5 +1,7 @@
 {
       "files.associations": {
             "stdio.h": "c"
-      }
+      },
+      "makefile.makefilePath": "MakeFile",
+      "makefile.makePath": "C:\\MinGW\\bin\\make"
 }
