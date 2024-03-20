@@ -1,17 +1,14 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -std=c11
-TARGET = program
-
-all: $(TARGET)
-
-$(TARGET): main.o conversion.o
-    $(CC) $(CFLAGS) -o $@ $^
-
-main.o: main.c conversion.h
-    $(CC) $(CFLAGS) -c $<
-
-conversion.o: conversion.c conversion.h
-    $(CC) $(CFLAGS) -c $<
-
+CC=gcc
+CFLAGS=-std=c11 -Wpedantic -Wall -Wextra
+LDLIBS=-lm
+RM=rm -f
+OBJ=main.o convertion.o
+EXE=main
+$(EXE):$(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(EXE) $(LDLIBS)
+main.o:main.c convertion.h
+	$(CC) $(CFLAGS) -c main.c
+conversion.o:convertion.c convertion.h
+	$(CC) $(CFLAGS) -c convertion.c
 clean:
-    rm -f $(TARGET) *.o
+	$(RM) $(OBJ) $(EXE)
