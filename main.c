@@ -4,5 +4,6 @@
 int main(){
 
       affTest();
+      verifierFormat();
       return 0;
 }

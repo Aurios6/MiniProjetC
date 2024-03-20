@@ -1,5 +1,10 @@
 #include "convertion.h"
 
 void affTest(){
-      printf("hello world");
+      printf("hello world\n");
+
+}
+
+void verifierFormat(){
+      printf("verif_Format\n");
 }
