@@ -1,0 +1,17 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c11
+TARGET = program
+
+all: $(TARGET)
+
+$(TARGET): main.o conversion.o
+    $(CC) $(CFLAGS) -o $@ $^
+
+main.o: main.c conversion.h
+    $(CC) $(CFLAGS) -c $<
+
+conversion.o: conversion.c conversion.h
+    $(CC) $(CFLAGS) -c $<
+
+clean:
+    rm -f $(TARGET) *.o
