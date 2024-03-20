@@ -2,3 +2,4 @@
 #include <stdio.h>
 
 void affTest();
+void verifierFormat();
