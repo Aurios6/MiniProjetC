@@ -9,12 +9,12 @@ void affTest(){
       Scan the char *ipAdress and stop when the pointer point to the caracter that close a chain
       Move across the chain wihe ipAdress++
 */
-void verifierFormat(char *ipAdress){
+void verifierFormat(const char *ipAdress){
      
       while(*ipAdress != '\0'){
             //do the test of the format
-            
 
+            //byte1 = 
             // Show the ipAdress caracter by caracter
             printf("%c\n",*ipAdress);
             ipAdress ++;
