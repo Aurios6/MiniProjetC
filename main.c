@@ -3,7 +3,8 @@
 
 int main(){
 
-      affTest();
-      verifierFormat();
+      //affTest();
+      char* ipTest = "hello";
+      verifierFormat(ipTest);
       return 0;
 }
