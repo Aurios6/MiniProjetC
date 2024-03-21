@@ -2,4 +2,4 @@
 #include <stdio.h>
 
 void affTest();
-void verifierFormat();
+void verifierFormat(const char *ipAdress);
