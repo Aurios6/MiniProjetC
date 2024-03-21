@@ -4,7 +4,7 @@
 int main(){
 
       //affTest();
-      const char* ipTest = "hello";
+      const char* ipTest = "145.79.198.6/24";
       verifierFormat(ipTest);
       return 0;
 }

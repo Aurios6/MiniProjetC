@@ -1,5 +1,6 @@
 #pragma once
 #include <stdio.h>
+#include "strManipulation.h"
 
 void affTest();
-void verifierFormat(const char *ipAdress);
+int verifierFormat(const char *ipAdress);
