@@ -12,6 +12,15 @@ int charNbOfChar(const char *str, char target)
       return size;
 }
 
+int charLenght(const char* str)
+{
+      int size = 0;
+      while(*str != '\0'){
+            size++;
+            str++;
+      }
+      return size;
+}
 
 int* charLocationByIndice(const char *str, char target, int *size)
 {
@@ -33,15 +42,6 @@ int* charLocationByIndice(const char *str, char target, int *size)
       return indiceArray;
 }
 
-int charLenght(const char* str)
-{
-      int size = 0;
-      while(*str != '\0'){
-            size++;
-            str++;
-      }
-      return size;
-}
 
 int strToInt(const char *str)
 {
