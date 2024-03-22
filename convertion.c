@@ -28,7 +28,5 @@ int verifierFormat(const char *ipAdress){
             ipAdress ++;
       }
       printf("\n");
-
-
       return 1;
 }
