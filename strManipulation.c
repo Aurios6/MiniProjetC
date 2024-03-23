@@ -27,14 +27,11 @@ int* charLocationByIndice(const char *str, char target, int *size)
 {
 
       *size = charNbOfChar(str, target);
-
       int* indiceArray = (int*) malloc(*size * sizeof(int));
       if(indiceArray == NULL){
             fprintf(stderr, "indiceArray memory allocation failed");
             exit(EXIT_FAILURE);
       }
-
-
 
       int index = 0;
       for(int i = 0; str[i] != '\0'; i++){
@@ -48,12 +45,15 @@ int* charLocationByIndice(const char *str, char target, int *size)
 }
 
 
+
+// TODO: make work if str est vide. pb result =0 start
+
 int strToInt(const char *str)
 {
       int result = 0;
 
       while(*str != '\0'){
-            if(*str < '0' || *str > '9'){
+            if((*str < '0' || *str > '9')){
                   return -1;
             }
             result = result * 10 + (*str - '0');

@@ -12,9 +12,10 @@ int verifierFormat(const char *ipAdress){
       int sizeIndexArrayDot;
       int *indexArrayDot = charLocationByIndice(ipAdress, '.', &sizeIndexArrayDot);
       int lowerBound = 0;
-      int upperBound = indexArrayDot[0];
+      int upperBound = indexArrayDot[0]-1;
 
-      int *indexArraySlash = charLocationByIndice(ipAdress, '/', &sizeIndexArrayDot);
+      int sizeIndexArraySlash;
+      int *indexArraySlash = charLocationByIndice(ipAdress, '/', &sizeIndexArraySlash);
       
      /*
      char* subStr = extractSubString(ipAdress, 0,2);
@@ -31,22 +32,26 @@ int verifierFormat(const char *ipAdress){
       for(int i = 0; i < sizeIndexArrayDot; i++){
             char*subStr = extractSubString(ipAdress, lowerBound, upperBound);
             int bitIP = strToInt(subStr);
-            printf("Str to INT %d\n", bitIP);
+            //printf("Str to INT %d\n", bitIP);
             if (bitIP < 0 || bitIP > 255){
                   printf("Return 0 first\n");
                   return 0;
             }
-            lowerBound = upperBound;
-            upperBound =  indexArrayDot[i];
+            lowerBound = indexArrayDot[i]+1;
+            upperBound =  indexArrayDot[i+1]-1;
       }
-      char* subStr2 = extractSubString(ipAdress,indexArrayDot[sizeIndexArrayDot], *indexArraySlash);
-      if (strToInt(subStr2) < 0 || strToInt(subStr2) < 255){
+      char* subStr = extractSubString(ipAdress,indexArrayDot[sizeIndexArrayDot-1]+1, indexArraySlash[sizeIndexArraySlash-1]-1);
+      int bitIP = strToInt(subStr);
+      //printf("Str to INT %d\n", bitIP);
+      if (bitIP < 0 || bitIP > 255){
             printf("Return 0 mid\n");
             return 0;
       }
 
-      char* subStr3 = extractSubString(ipAdress, *indexArraySlash, sizeIpAdress);
-      if (strToInt(subStr3) < 0 || strToInt(subStr3) < 255){
+      char* subStr2 = extractSubString(ipAdress, indexArraySlash[sizeIndexArraySlash-1]+1, sizeIpAdress);
+      int bitIP2 = strToInt(subStr2);
+      //printf("Str to INT %d\n", bitIP2);
+      if (bitIP2 < 0 || bitIP2 > 255){
             printf("Return 0 last\n");
             return 0;
       }
