@@ -4,6 +4,7 @@ LDLIBS=-lm
 RM=rm -f
 OBJ=main.o convertion.o strManipulation.o
 EXE=main
+
 $(EXE):$(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(EXE) $(LDLIBS)
 main.o:main.c convertion.h strManipulation.h
