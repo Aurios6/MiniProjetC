@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=c11 -Wpedantic -Wall -Wextra -Werror
+CFLAGS=-std=c11 -Wpedantic -Wall -Wextra
 LDLIBS=-lm
 RM=rm -f
 OBJ=main.o convertion.o strManipulation.o
