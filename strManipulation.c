@@ -46,21 +46,23 @@ int* charLocationByIndice(const char *str, char target, int *size)
 
 
 
-// TODO: make work if str est vide. pb result =0 start
-
 int strToInt(const char *str)
 {
       int result = 0;
-
+      int goThroughWhile = 0;
       while(*str != '\0'){
-            if((*str < '0' || *str > '9')){
+            goThroughWhile = 1;
+            if((*str < '0' || *str > '9' || *str == 0)){
+                  //printf("in if str to int\n");
                   return -1;
             }
             result = result * 10 + (*str - '0');
             str++;
       }
-      return result;
-}
+      if(goThroughWhile)
+            return result;
+      return -1;
+      }
 
 char* extractSubString(const char *str, int start, int end){
       int size = end - start + 1;

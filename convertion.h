@@ -5,3 +5,4 @@
 
 void affTest();
 int verifierFormat(const char *ipAdress);
+int* cutIpAdress(const char *cutIpAdress,char delimiter );
