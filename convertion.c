@@ -26,14 +26,17 @@ int verifierFormat(const char *ipAdress){
             if (*ipAdress >= '0' && *ipAdress <= '9') {
             i++;
             if (i > 3) {
+                // nb of digits > 3  
                 return 0;
             }
 
             } else if (*ipAdress == '.' || *ipAdress =='/') {
+                  // reset of i when a . or / is found
                   i = 0;
             }
 
             else {
+                  // every other errors of format (if there is 'a' somewhere for e.x)
                   return 0;
             }
             
