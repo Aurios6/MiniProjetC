@@ -26,7 +26,6 @@ int verifierFormat(const char *ipAdress){
             if (*ipAdress >= '0' && *ipAdress <= '9') {
             i++;
             if (i > 3) {
-                printf("Format non valide, nombre de chiffres>3\n");
                 return 0;
             }
 
@@ -35,7 +34,7 @@ int verifierFormat(const char *ipAdress){
             }
 
             else {
-                  printf("Format invalide, voici un exemple de format correct : 125.78.32.1/23");
+                  return 0;
             }
             
             // Show the ipAdress caracter by caracter
