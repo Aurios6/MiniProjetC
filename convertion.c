@@ -15,20 +15,33 @@ int verifierFormat(const char *ipAdress){
       if (charNbOfChar(ipAdress, '.') != 3 || charNbOfChar(ipAdress, '/') != 1){
             return 0;
       }
-      
+
       const char *testStrToInt = "76674585";
       printf("STR \"%s\" to INT = %d\n",testStrToInt, strToInt(testStrToInt));
 
       while(*ipAdress != '\0'){
             //do the test of the format
             
+            int i = 0;
+            if (*ipAdress >= '0' && *ipAdress <= '9') {
+            i++;
+            if (i > 3) {
+                printf("Format non valide, nombre de chiffres>3\n");
+                return 0;
+            }
 
+            } else if (*ipAdress == '.' || *ipAdress =='/') {
+                  i = 0;
+            }
+
+            else {
+                  printf("Format invalide, voici un exemple de format correct : 125.78.32.1/23");
+            }
+            
             // Show the ipAdress caracter by caracter
             printf("%c",*ipAdress);
             ipAdress ++;
       }
       printf("\n");
-
-
       return 1;
 }
