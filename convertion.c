@@ -27,6 +27,37 @@ int verifierFormat(const char *ipAdress){
       }
       printf("\n");
 
+      //test taille in array
+      if (sizeIpIntArray!=5){
+            fprintf(stderr,"Erreur Taille\n");
+      }
+      
+      // test 0<IP<255
+      for (int i = 0; i < sizeIpIntArray - 1; i++){
+            if(arrayIpCut[i] < 0 || arrayIpCut[i] > 255) {
+                  fprintf(stderr, "Erreur IP\n");
+            }
+      }
+
+      // TEST CLASS IP //
+      for (int i = 0; i < sizeIpIntArray; i++){
+            if(arrayIpCut[1] >= 0 && arrayIpCut[1] <= 127 && arrayIpCut[5] == 8){
+                  printf("Classe A\n");
+            }
+            else if (arrayIpCut[1] >= 128 && arrayIpCut[1] <= 191 && arrayIpCut[5] == 16) {
+                  printf("Classe B\n");
+            }
+            else if (arrayIpCut[1] >= 192 && arrayIpCut[1] <= 223 && arrayIpCut[5] == 24) {
+                  printf("Classe C\n");
+            }
+            else if (arrayIpCut[1] >= 224 && arrayIpCut[1] <= 255) {
+                  printf("Classe D (multicast)\n");
+            }
+            else {
+                  printf("Classe E (réservé)\n");
+            }
+      }
+
       /*
       if (bitIP < 0 || bitIP > 255){
             printf("Return 0 first\n");
@@ -67,8 +98,9 @@ int* cutIpV4Adress(const char *ipAdress, int *size)
 
             arrayIntIp[arrayIndice] = bitIP;
             arrayIndice++;
-
       }
+
+
 
       char* subStr = extractSubString(ipAdress,indexArrayDot[sizeIndexArrayDot-1]+1, indexArraySlash[sizeIndexArraySlash-1]-1);
       int bitIP = strToInt(subStr);
