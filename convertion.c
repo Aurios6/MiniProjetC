@@ -27,20 +27,6 @@ int verifierFormat(const char *ipAdress){
       }
       printf("\n");
 
-      /*
-      if (bitIP < 0 || bitIP > 255){
-            printf("Return 0 first\n");
-            
-      }
-      if (bitIP2 < 0 || bitIP2 > 255){
-            printf("Return 0 last\n");
-      }
-      
-      if (bitIP < 0 || bitIP > 255){
-            printf("Return 0 mid\n");
-      }
-      return 1;
-      */
      return 1;
 }
 
