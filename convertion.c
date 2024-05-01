@@ -30,43 +30,4 @@ int verifierFormat(const char *ipAdress){
      return 1;
 }
 
-int* cutIpV4Adress(const char *ipAdress, int *size)
-{
-      int sizeIpAdress = charLenght(ipAdress);
-     
-      int sizeIndexArrayDot;
-      int *indexArrayDot = charLocationByIndice(ipAdress, '.', &sizeIndexArrayDot);
-      int lowerBound = 0;
-      int upperBound = indexArrayDot[0]-1;
 
-      int sizeIndexArraySlash;
-      int *indexArraySlash = charLocationByIndice(ipAdress, '/', &sizeIndexArraySlash);
-
-      int* arrayIntIp = (int*)malloc((sizeIndexArrayDot + sizeIndexArraySlash) * sizeof(int));
-      int arrayIndice = 0;
-
-      for(int i = 0; i < sizeIndexArrayDot; i++){
-            char*subStr = extractSubString(ipAdress, lowerBound, upperBound);
-            int bitIP = strToInt(subStr);
-            lowerBound = indexArrayDot[i]+1;
-            upperBound =  indexArrayDot[i+1]-1;
-
-            arrayIntIp[arrayIndice] = bitIP;
-            arrayIndice++;
-
-      }
-
-      char* subStr = extractSubString(ipAdress,indexArrayDot[sizeIndexArrayDot-1]+1, indexArraySlash[sizeIndexArraySlash-1]-1);
-      int bitIP = strToInt(subStr);
-      //printf("Str to INT %d\n", bitIP);
-      arrayIntIp[arrayIndice] = bitIP;
-      arrayIndice++;
-
-      char* subStr2 = extractSubString(ipAdress, indexArraySlash[sizeIndexArraySlash-1]+1, sizeIpAdress);
-      int bitIP2 = strToInt(subStr2);
-      //printf("Str to INT %d\n", bitIP2);
-      arrayIntIp[arrayIndice] = bitIP2;
-
-      *size = arrayIndice+1;
-      return arrayIntIp;
-}
