@@ -7,13 +7,26 @@
 
 int verifierFormat(char *ipAdress){
 
-      int sizeIpIntArray;
-
-     //Check if there is the correct number of . and /
       if (nbOfChar(ipAdress, '.') != 3 || nbOfChar(ipAdress, '/') != 1){
             printf("Return 0 nb char . /\n");
             return 0;
       }
+
+      int ipAdressLen = strlen(ipAdress);
+      char ipAdressArray[ipAdressLen + 1];
+      strcpy(ipAdressArray, ipAdress);
+
+      char *separator = "./";
+      char *strToken = strtok(ipAdressArray,separator);
+
+      while (strToken != NULL){
+            printf("%s\n", strToken);
+            strToken = strtok(NULL,separator);
+      }
+
+
+
+
       printf("Valid\n");
       return 1;
 }
