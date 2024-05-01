@@ -11,7 +11,5 @@ main.o:main.c convertion.h strManipulation.h
 	$(CC) $(CFLAGS) -c main.c
 conversion.o:convertion.c convertion.h strManipulation.h
 	$(CC) $(CFLAGS) -c convertion.c
-strManipulation.o:strManipulation.c strManipulation.h
-	$(CC) $(CFLAGS) -c strManipulation.c
 clean:
 	$(RM) $(OBJ) $(EXE)
