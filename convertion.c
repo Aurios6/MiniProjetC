@@ -7,6 +7,8 @@
 
 int verifierFormat(char *ipAdress){
 
+      int ipAdressIntTab [10];
+
       if (nbOfChar(ipAdress, '.') != 3 || nbOfChar(ipAdress, '/') != 1){
             printf("Return 0 nb char . /\n");
             return 0;
@@ -19,11 +21,16 @@ int verifierFormat(char *ipAdress){
       char *separator = "./";
       char *strToken = strtok(ipAdressArray,separator);
 
+      int indexIpTab = 0;
       while (strToken != NULL){
-            printf("%s\n", strToken);
+            /*
+            strToken = ipAdressIntTab[indexIpTab];
+            printf("%d\n",ipAdressIntTab[indexIpTab]);
+            i++;
+            */
+            printf("%s\n",strToken);
             strToken = strtok(NULL,separator);
       }
-
 
 
 
