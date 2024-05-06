@@ -4,115 +4,38 @@
       Scan the char *ipAdress and stop when the pointer point to the caracter that close a chain
       Move across the chain wihe ipAdress++
 */
-int verifierFormat(const char *ipAdress){
 
+int verifierFormat(char *ipAdress){
 
+      int ipAdressIntTab [10];
 
-      int sizeIpIntArray;
-     /*
-     char* subStr = extractSubString(ipAdress, 0,2);
-     printf("SubSTR est : %s\n", subStr);
-     printf("En INT : %d\n", strToInt(subStr));
-     */
-
-     //Check if there is the correct number of . and /
-      if (charNbOfChar(ipAdress, '.') != 3 || charNbOfChar(ipAdress, '/') != 1){
+      if (nbOfChar(ipAdress, '.') != 3 || nbOfChar(ipAdress, '/') != 1){
             printf("Return 0 nb char . /\n");
             return 0;
       }
-      
-      int* arrayIpCut = cutIpV4Adress(ipAdress, &sizeIpIntArray);
-      for(int i = 0; i < sizeIpIntArray; i++){
-            printf("%d ",arrayIpCut[i]);
-      }
-      printf("\n");
 
-      //test taille in array
-      if (sizeIpIntArray!=5){
-            fprintf(stderr,"Erreur Taille\n");
-      }
-      
-      // test 0<IP<255
-      for (int i = 0; i < sizeIpIntArray - 1; i++){
-            if(arrayIpCut[i] < 0 || arrayIpCut[i] > 255) {
-                  fprintf(stderr, "Erreur IP\n");
-            }
-      }
+      int ipAdressLen = strlen(ipAdress);
+      char ipAdressArray[ipAdressLen + 1];
+      strcpy(ipAdressArray, ipAdress);
 
-      // TEST CLASS IP //
-      for (int i = 0; i < sizeIpIntArray; i++){
-            if(arrayIpCut[1] >= 0 && arrayIpCut[1] <= 127 && arrayIpCut[5] == 8){
-                  printf("Classe A\n");
-            }
-            else if (arrayIpCut[1] >= 128 && arrayIpCut[1] <= 191 && arrayIpCut[5] == 16) {
-                  printf("Classe B\n");
-            }
-            else if (arrayIpCut[1] >= 192 && arrayIpCut[1] <= 223 && arrayIpCut[5] == 24) {
-                  printf("Classe C\n");
-            }
-            else if (arrayIpCut[1] >= 224 && arrayIpCut[1] <= 255) {
-                  printf("Classe D (multicast)\n");
-            }
-            else {
-                  printf("Classe E (réservé)\n");
-            }
+      char *separator = "./";
+      char *strToken = strtok(ipAdressArray,separator);
+
+      int indexIpTab = 0;
+      while (strToken != NULL){
+            /*
+            strToken = ipAdressIntTab[indexIpTab];
+            printf("%d\n",ipAdressIntTab[indexIpTab]);
+            i++;
+            */
+            printf("%s\n",strToken);
+            strToken = strtok(NULL,separator);
       }
 
-      /*
-      if (bitIP < 0 || bitIP > 255){
-            printf("Return 0 first\n");
-            
-      }
-      if (bitIP2 < 0 || bitIP2 > 255){
-            printf("Return 0 last\n");
-      }
-      
-      if (bitIP < 0 || bitIP > 255){
-            printf("Return 0 mid\n");
-      }
+
+
+      printf("Valid\n");
       return 1;
-      */
-     return 1;
 }
 
-int* cutIpV4Adress(const char *ipAdress, int *size)
-{
-      int sizeIpAdress = charLenght(ipAdress);
-     
-      int sizeIndexArrayDot;
-      int *indexArrayDot = charLocationByIndice(ipAdress, '.', &sizeIndexArrayDot);
-      int lowerBound = 0;
-      int upperBound = indexArrayDot[0]-1;
 
-      int sizeIndexArraySlash;
-      int *indexArraySlash = charLocationByIndice(ipAdress, '/', &sizeIndexArraySlash);
-
-      int* arrayIntIp = (int*)malloc((sizeIndexArrayDot + sizeIndexArraySlash) * sizeof(int));
-      int arrayIndice = 0;
-
-      for(int i = 0; i < sizeIndexArrayDot; i++){
-            char*subStr = extractSubString(ipAdress, lowerBound, upperBound);
-            int bitIP = strToInt(subStr);
-            lowerBound = indexArrayDot[i]+1;
-            upperBound =  indexArrayDot[i+1]-1;
-
-            arrayIntIp[arrayIndice] = bitIP;
-            arrayIndice++;
-      }
-
-
-
-      char* subStr = extractSubString(ipAdress,indexArrayDot[sizeIndexArrayDot-1]+1, indexArraySlash[sizeIndexArraySlash-1]-1);
-      int bitIP = strToInt(subStr);
-      //printf("Str to INT %d\n", bitIP);
-      arrayIntIp[arrayIndice] = bitIP;
-      arrayIndice++;
-
-      char* subStr2 = extractSubString(ipAdress, indexArraySlash[sizeIndexArraySlash-1]+1, sizeIpAdress);
-      int bitIP2 = strToInt(subStr2);
-      //printf("Str to INT %d\n", bitIP2);
-      arrayIntIp[arrayIndice] = bitIP2;
-
-      *size = arrayIndice+1;
-      return arrayIntIp;
-}
