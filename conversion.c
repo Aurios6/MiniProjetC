@@ -55,9 +55,34 @@ int verifierFormat(char *ipAdress){
             strToken = strtok(NULL,separator);
       }
 
+      /*
+            Check size
+      */
 
+      if(indexIpTab!=5){
+            printf("INVALID IP ADRESS\n");
+            return 0;
+      }
 
-      printf("Valid\n");
+      /*
+            Chack value
+      */
+      
+      for(int i = 0; i<indexIpTab;i++){
+            if(ipAdressIntTab[i]<0 || ipAdressIntTab[i] > 255){
+                  printf("INVALID IP ADRESS\n");
+                  return 1;
+            }
+      }
+
+      /*
+            ceck mask value
+      */
+      
+
+     //  if(ipAdressIntTab[5] < 0 || ipAdressIntTab[5] > ?????????){
+     //todo ^
+
       return 1;
 }
 
