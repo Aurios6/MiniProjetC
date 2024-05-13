@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "convertion.h"
+#include "conversion.h"
 #include "auxiliaryFunction.h"
 
 int main(){
