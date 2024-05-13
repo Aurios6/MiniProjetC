@@ -20,7 +20,7 @@
 *                                                                             *
 *******************************************************************************
 *                                                                             *
-*  Nom du fichier : conversion.c                                                          *
+*  Nom du fichier : conversion.c                                              *
 *                                                                             *
 ******************************************************************************/
 
@@ -48,19 +48,23 @@ int verifierFormat(char *ipAdress){
       char *strToken = strtok(ipAdressArray,separator);
 
       int indexIpTab = 0;
+
+      char *endPtr;
+
       while (strToken != NULL){
-            ipAdressIntTab[indexIpTab] = atoi(strToken);
-            printf("%d\n",ipAdressIntTab[indexIpTab]);
+            ipAdressIntTab[indexIpTab] = strtol(strToken,&endPtr,10);
+            printf("%d.", ipAdressIntTab[indexIpTab]);
             indexIpTab++;
             strToken = strtok(NULL,separator);
       }
+      printf("\n");
 
       /*
             Check size
       */
 
       if(indexIpTab!=5){
-            printf("INVALID IP ADRESS\n");
+            printf("INVALID IP ADRESS size\n");
             return 0;
       }
 
@@ -70,7 +74,7 @@ int verifierFormat(char *ipAdress){
       
       for(int i = 0; i<indexIpTab;i++){
             if(ipAdressIntTab[i]<0 || ipAdressIntTab[i] > 255){
-                  printf("INVALID IP ADRESS\n");
+                  printf("INVALID IP ADRESS value\n");
                   return 1;
             }
       }
@@ -78,12 +82,14 @@ int verifierFormat(char *ipAdress){
       /*
             ceck mask value
       */
-      
 
-     //  if(ipAdressIntTab[5] < 0 || ipAdressIntTab[5] > ?????????){
-     //todo ^
+      if(ipAdressIntTab[4] < 0 || ipAdressIntTab[4] > 32){
+            printf("INVALID IP ADRESS mask\n");
+            return 1;
+      }
 
-      return 1;
+      printf("Valid Ip adress\n");
+      return 0;
 }
 
 
