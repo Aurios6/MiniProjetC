@@ -25,6 +25,7 @@
 ******************************************************************************/
 
 #include "conversion.h"
+
 /*
       verifier format prend en paramètre un pointeur vers Char
       Scan the char *ipAdress and stop when the pointer point to the caracter that close a chain
@@ -47,12 +48,24 @@ int verifierFormat(char *ipAdress){
       char *separator = "./";
       char *strToken = strtok(ipAdressArray,separator);
 
+      /*
+            Check if  non numerical value in string
+      */
+
+      for(int i=0; ipAdress[i] != '\0'; i++){
+            if(!isdigit(ipAdress[i]) && ipAdress[i] != '.' && ipAdress[i] != '/'){
+                  printf("NOT A DIGIT\n");
+                  return 1;
+            }      
+      }
+
+      /*
+            Change string to int
+      */
+
       int indexIpTab = 0;
-
-      char *endPtr;
-
       while (strToken != NULL){
-            ipAdressIntTab[indexIpTab] = strtol(strToken,&endPtr,10);
+            ipAdressIntTab[indexIpTab] = atoi(strToken);
             printf("%d.", ipAdressIntTab[indexIpTab]);
             indexIpTab++;
             strToken = strtok(NULL,separator);
