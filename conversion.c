@@ -20,11 +20,12 @@
 *                                                                             *
 *******************************************************************************
 *                                                                             *
-*  Nom du fichier : conversion.c                                                          *
+*  Nom du fichier : conversion.c                                              *
 *                                                                             *
 ******************************************************************************/
 
 #include "conversion.h"
+
 /*
       verifier format prend en paramètre un pointeur vers Char
       Scan the char *ipAdress and stop when the pointer point to the caracter that close a chain
@@ -47,20 +48,36 @@ int verifierFormat(char *ipAdress){
       char *separator = "./";
       char *strToken = strtok(ipAdressArray,separator);
 
+      /*
+            Check if  non numerical value in string
+      */
+
+      for(int i=0; ipAdress[i] != '\0'; i++){
+            if(!isdigit(ipAdress[i]) && ipAdress[i] != '.' && ipAdress[i] != '/'){
+                  printf("NOT A DIGIT\n");
+                  return 1;
+            }      
+      }
+
+      /*
+            Change string to int
+      */
+
       int indexIpTab = 0;
       while (strToken != NULL){
             ipAdressIntTab[indexIpTab] = atoi(strToken);
-            printf("%d\n",ipAdressIntTab[indexIpTab]);
+            printf("%d.", ipAdressIntTab[indexIpTab]);
             indexIpTab++;
             strToken = strtok(NULL,separator);
       }
+      printf("\n");
 
       /*
             Check size
       */
 
       if(indexIpTab!=5){
-            printf("INVALID IP ADRESS\n");
+            printf("INVALID IP ADRESS size\n");
             return 0;
       }
 
@@ -70,7 +87,7 @@ int verifierFormat(char *ipAdress){
       
       for(int i = 0; i<indexIpTab;i++){
             if(ipAdressIntTab[i]<0 || ipAdressIntTab[i] > 255){
-                  printf("INVALID IP ADRESS\n");
+                  printf("INVALID IP ADRESS value\n");
                   return 1;
             }
       }
@@ -78,12 +95,14 @@ int verifierFormat(char *ipAdress){
       /*
             ceck mask value
       */
-      
 
-     //  if(ipAdressIntTab[5] < 0 || ipAdressIntTab[5] > ?????????){
-     //todo ^
+      if(ipAdressIntTab[4] < 0 || ipAdressIntTab[4] > 32){
+            printf("INVALID IP ADRESS mask\n");
+            return 1;
+      }
 
-      return 1;
+      printf("Valid Ip adress\n");
+      return 0;
 }
 
 
