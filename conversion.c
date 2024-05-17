@@ -32,6 +32,7 @@
       Move across the chain wihe ipAdress++
 */
 
+
 int verifierFormat(char *ipAdress){
 
       int ipAdressIntTab [10];
@@ -105,4 +106,31 @@ int verifierFormat(char *ipAdress){
       return 0;
 }
 
+/*
+      Check the class
+*/
+
+int checkClass(int *firstOctet, int *secondOctet)
+{
+    for (int i = 0; i < 5; i++) {
+        if (firstOctet[i] >= 0 && firstOctet[i] <= 127 && firstOctet[i] == 10) {
+            printf("Class A, private\n");
+        }
+        else if (firstOctet[i] >= 0 && firstOctet[i] <= 127 && firstOctet[i] != 10) {
+            printf("Class A, public\n");
+        }
+        else if (firstOctet[i] >= 128 && firstOctet[i] <= 191) {
+            printf("Class B\n");
+        } else if (firstOctet[i] >= 192 && firstOctet[i] <= 223) {
+            printf("Class C\n");
+        } else if (firstOctet[i] >= 224 && firstOctet[i] <= 239) {
+            printf("Class D\n");
+        } else if (firstOctet[i] >= 240 && firstOctet[i] <= 255) {
+            printf("Class E\n");
+        }
+    }
+
+
+    return 0;
+}
 

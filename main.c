@@ -44,6 +44,9 @@ int main(){
       verifierFormat(ipTest3);
       printf("Test4\n");
       verifierFormat(ipTest4);
-      
+
+      int tab[5] = {10,129,195,228, 255};
+      int tab2[5] = {1, 18, 168, 123, 112};
+      checkClass(tab, tab2);
       return 0;
 }
