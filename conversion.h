@@ -33,4 +33,8 @@
 
 void affTest();
 int verifierFormat(char *ipAdress);
+<<<<<<< HEAD
 int checkClass(int *firstOctet);
+=======
+void scopeExtract(char *ipAdress, char **returnArray);
+>>>>>>> main
