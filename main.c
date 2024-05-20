@@ -36,14 +36,25 @@ int main(){
       char* ipTest3 = "145.79.18.6/24";
       char* ipTest4 = ".../";
 
-      printf("Test1\n");
+      printf("\nTest1\n");
       verifierFormat(ipTest);
-      printf("Test2\n");
+      printf("\nTest2\n");
       verifierFormat(ipTest2);
-      printf("Test3\n");
+      printf("\nTest3\n");
       verifierFormat(ipTest3);
-      printf("Test4\n");
+      printf("\nTest4\n");
       verifierFormat(ipTest4);
+
+      char extractedScope[5][10];
+
+      if (verifierFormat(ipTest) == 0){
+            scopeExtract(ipTest,extractedScope);
+      }
+
+      printf("Part 2\n");
+      for(int i=0;i<5;i++ ){
+            printf("%s ",extractedScope[i]);
+      }
       
       return 0;
 }
