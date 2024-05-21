@@ -2,6 +2,7 @@
       "files.associations": {
             "strmanipulation.h": "c",
             "stdio.h": "c",
-            "convertion.h": "c"
+            "convertion.h": "c",
+            "auxiliaryfunction.h": "c"
       }
 }

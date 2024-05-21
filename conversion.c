@@ -110,7 +110,7 @@ void scopeExtract(char *ipAdress,char **returnArray){
       printf("------------------SCOPE EXTRACT-----------------\n\n");
 
       int ipAdressLen = strlen(ipAdress);
-      char ipAdressArray[ipAdressLen + 1];
+      char* ipAdressArray = malloc(sizeof(char) *ipAdressLen + 1);
       strcpy(ipAdressArray, ipAdress);
 
       char *separator = "./";
@@ -121,12 +121,16 @@ void scopeExtract(char *ipAdress,char **returnArray){
       printf("THE IP ADRESS --> ");
       while (strToken){
             printf("%s ", strToken);
-            strncpy(returnArray[indexReturnArray],strToken,10);
+
+            printf("\nipaddr: %s\n ",ipAdress);
+            printf("ipaddr array: %s\n",ipAdressArray);
+            printf("CP1\n");
+            strncpy(returnArray[indexReturnArray], strToken, 3);
             printf("CP2\n");
+            
             strToken = strtok(NULL,separator);
             indexReturnArray++;
       }
-
       
       printf("\n");
 
