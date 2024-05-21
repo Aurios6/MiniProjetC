@@ -107,38 +107,40 @@ int verifierFormat(char *ipAdress){
       return 0;
 }
 
-<<<<<<< HEAD
 /*
       Check the class
 */
 
 int checkClass(int *firstOctet, int *secondOctet)
 {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 8; i++) {
         if (firstOctet[i] >= 0 && firstOctet[i] <= 127 && firstOctet[i] == 10) {
             printf("Class A, private\n");
         }
         else if (firstOctet[i] >= 0 && firstOctet[i] <= 127 && firstOctet[i] != 10) {
             printf("Class A, public\n");
         }
+        else if (firstOctet[i] == 172 && secondOctet[i] >= 16 && secondOctet[i] <=31) {
+            printf("Class B, private\n");
+        }
         else if (firstOctet[i] >= 128 && firstOctet[i] <= 191) {
-            printf("Class B\n");
-        } else if (firstOctet[i] >= 192 && firstOctet[i] <= 223) {
-            printf("Class C\n");
+            printf("Class B, public\n");
+        }else if (firstOctet[i] >= 192 && secondOctet[i] ==168) {
+            printf("Class C, private\n");
+        }
+        else if (firstOctet[i] >= 192 && firstOctet[i] <= 223) {
+            printf("Class C, public\n");
         } else if (firstOctet[i] >= 224 && firstOctet[i] <= 239) {
-            printf("Class D\n");
+            printf("Class D, multicast\n");
         } else if (firstOctet[i] >= 240 && firstOctet[i] <= 255) {
-            printf("Class E\n");
+            printf("Class E, experimental\n");
         }
     }
 
 
     return 0;
 }
-=======
-void scopeExtract(char *ipAdress,char **returnArray){
-      printf("------------------SCOPE EXTRACT-----------------\n\n");
->>>>>>> main
+
 
       int ipAdressLen = strlen(ipAdress);
       char ipAdressArray[ipAdressLen + 1];
@@ -161,5 +163,5 @@ void scopeExtract(char *ipAdress,char **returnArray){
       
       printf("\n");
 
-      return;
+      return ;
 }

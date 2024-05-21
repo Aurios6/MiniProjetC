@@ -45,22 +45,8 @@ int main(){
       printf("\nTest4\n");
       verifierFormat(ipTest4);
 
-<<<<<<< HEAD
-      int tab[5] = {10,129,195,228, 255};
-      int tab2[5] = {1, 18, 168, 123, 112};
+      int tab[8] = {10,11,172,173,192,192,228,255};
+      int tab2[8] = {0,127,21,255,168,169,123,112};
       checkClass(tab, tab2);
-=======
-      char extractedScope[5][10];
-
-      if (verifierFormat(ipTest) == 0){
-            scopeExtract(ipTest,extractedScope);
-      }
-
-      printf("Part 2\n");
-      for(int i=0;i<5;i++ ){
-            printf("%s ",extractedScope[i]);
-      }
-      
->>>>>>> main
       return 0;
 }
