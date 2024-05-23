@@ -33,4 +33,4 @@
 
 void affTest();
 int verifierFormat(char *ipAdress);
-void scopeExtract(char *ipAdress, char **returnArray);
+void scopeExtract(char *ipAdress, char **returnArray, char *returnMask);

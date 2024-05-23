@@ -45,14 +45,15 @@ int main(){
       printf("\nTest4\n");
       verifierFormat(ipTest4);
 
-      char extractedScope[5][10];
+      char* extractedScope[5];
+      char mask;
 
       if (verifierFormat(ipTest) == 0){
-            scopeExtract(ipTest,extractedScope);
+            scopeExtract(ipTest,extractedScope,mask);
       }
 
       printf("Part 2\n");
-      for(int i=0;i<5;i++ ){
+      for(int i=0;i<4;i++ ){
             printf("%s ",extractedScope[i]);
       }
       

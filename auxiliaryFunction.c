@@ -38,4 +38,3 @@ int nbOfChar (char *str, char target){
     }
     return res;
 }
-

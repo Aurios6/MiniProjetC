@@ -37,7 +37,7 @@ int verifierFormat(char *ipAdress){
       int ipAdressIntTab [10];
 
       if (nbOfChar(ipAdress, '.') != 3 || nbOfChar(ipAdress, '/') != 1){
-            printf("Return 0 nb char . /\n\n");
+            fprintf(stderr,"Return 0 nb char . /\n\n");
             return 0;
       }
 
@@ -47,7 +47,7 @@ int verifierFormat(char *ipAdress){
 
       for(int i=0; ipAdress[i] != '\0'; i++){
             if(!isdigit(ipAdress[i]) && ipAdress[i] != '.' && ipAdress[i] != '/'){
-                  printf("NOT A DIGIT\n\n");
+                  fprintf(stderr,"NOT A DIGIT\n\n");
                   return 1;
             }      
       }
@@ -66,18 +66,16 @@ int verifierFormat(char *ipAdress){
       int indexIpTab = 0;
       while (strToken != NULL){
             ipAdressIntTab[indexIpTab] = atoi(strToken);
-            printf("%d.", ipAdressIntTab[indexIpTab]);
             indexIpTab++;
             strToken = strtok(NULL,separator);
       }
-      printf("\n");
 
       /*
             Check size
       */
 
       if(indexIpTab!=5){
-            printf("INVALID IP ADRESS size\n\n");
+            fprintf(stderr,"INVALID IP ADRESS size\n\n");
             return 0;
       }
 
@@ -87,7 +85,7 @@ int verifierFormat(char *ipAdress){
       
       for(int i = 0; i<indexIpTab;i++){
             if(ipAdressIntTab[i]<0 || ipAdressIntTab[i] > 255){
-                  printf("INVALID IP ADRESS value\n\n");
+                  fprintf(stderr,"INVALID IP ADRESS value\n\n");
                   return 1;
             }
       }
@@ -97,42 +95,28 @@ int verifierFormat(char *ipAdress){
       */
 
       if(ipAdressIntTab[4] < 0 || ipAdressIntTab[4] > 32){
-            printf("INVALID IP ADRESS mask\n\n");
+            fprintf(stderr,"INVALID IP ADRESS mask\n\n");
             return 1;
       }
-
-      printf("Valid Ip adress\n\n");          
 
       return 0;
 }
 
-void scopeExtract(char *ipAdress,char **returnArray){
-      printf("------------------SCOPE EXTRACT-----------------\n\n");
+void scopeExtract(char *ipAdress,char **returnArray, char *returnMask){
+      int i = 0;
 
-      int ipAdressLen = strlen(ipAdress);
-      char* ipAdressArray = malloc(sizeof(char) *ipAdressLen + 1);
-      strcpy(ipAdressArray, ipAdress);
+      char *start = ipAdress;
+      char *end;
 
-      char *separator = "./";
-      char *strToken = strtok(ipAdressArray,separator);
+      while ((end = strchr(start, '.')) || (end = strchr(start, '/'))) {
+            size_t size = end - start;
+            returnArray[i] = malloc(sizeof(char) * size);
+            if(!returnArray[i])
+                  fprintf(stderr,"Erreur lors de l'allocation memoire pour de la partie %d de l'addresse IP.\n", i);
+            if(!memcpy(returnArray[i], start, size))
+                  fprintf(stderr,"Erreur lors de la copie du contenu de l'addresse IP a l'octet %d.\n", i);
+            returnArray[i++][size] = '\0';
 
-      int indexReturnArray = 0;
-
-      printf("THE IP ADRESS --> ");
-      while (strToken){
-            printf("%s ", strToken);
-
-            printf("\nipaddr: %s\n ",ipAdress);
-            printf("ipaddr array: %s\n",ipAdressArray);
-            printf("CP1\n");
-            strncpy(returnArray[indexReturnArray], strToken, 3);
-            printf("CP2\n");
-            
-            strToken = strtok(NULL,separator);
-            indexReturnArray++;
+            start = end + 1;
       }
-      
-      printf("\n");
-
-      return;
 }
