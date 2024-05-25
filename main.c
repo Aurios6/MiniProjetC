@@ -29,32 +29,30 @@
 #include "auxiliaryFunction.h"
 
 int main(){
-
       //affTest();
       char* ipTest = "145.79.198.6/24";
+      /*
       char* ipTest2 = "175.79.198.675/24";
       char* ipTest3 = "145.79.18.6/24";
       char* ipTest4 = ".../";
+      */
+      
+      //Valeur de retour
+      char **returnArrayString;
+      char *returnMask;
+      printf("WTF");
 
-      printf("\nTest1\n");
-      verifierFormat(ipTest);
-      printf("\nTest2\n");
-      verifierFormat(ipTest2);
-      printf("\nTest3\n");
-      verifierFormat(ipTest3);
-      printf("\nTest4\n");
-      verifierFormat(ipTest4);
+      if(verifierFormat(ipTest) == 0){
+            printf("ERREUR");
+      }else{            
+            scopeExtract(ipTest,returnArrayString,returnMask);
 
-      char* extractedScope[5];
-      char mask;
-
-      if (verifierFormat(ipTest) == 0){
-            scopeExtract(ipTest,extractedScope,mask);
-      }
-
-      printf("Part 2\n");
-      for(int i=0;i<4;i++ ){
-            printf("%s ",extractedScope[i]);
+            //Affichage des string de scopeExtract TEMPORAIRE
+            for(int i = 0;i<4;i++){
+                  printf("%s ",returnArrayString[i]);
+            }
+            printf("/");
+            printf("%s\n",returnMask);
       }
       
       return 0;

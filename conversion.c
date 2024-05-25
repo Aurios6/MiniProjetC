@@ -48,7 +48,7 @@ int verifierFormat(char *ipAdress){
       for(int i=0; ipAdress[i] != '\0'; i++){
             if(!isdigit(ipAdress[i]) && ipAdress[i] != '.' && ipAdress[i] != '/'){
                   fprintf(stderr,"NOT A DIGIT\n\n");
-                  return 1;
+                  return 0;
             }      
       }
 
@@ -86,7 +86,7 @@ int verifierFormat(char *ipAdress){
       for(int i = 0; i<indexIpTab;i++){
             if(ipAdressIntTab[i]<0 || ipAdressIntTab[i] > 255){
                   fprintf(stderr,"INVALID IP ADRESS value\n\n");
-                  return 1;
+                  return 0;
             }
       }
 
@@ -96,18 +96,17 @@ int verifierFormat(char *ipAdress){
 
       if(ipAdressIntTab[4] < 0 || ipAdressIntTab[4] > 32){
             fprintf(stderr,"INVALID IP ADRESS mask\n\n");
-            return 1;
+            return 0;
       }
 
-      return 0;
+      return 1;
 }
 
 void scopeExtract(char *ipAdress,char **returnArray, char *returnMask){
-      int i = 0;
-
       char *start = ipAdress;
       char *end;
 
+      int i = 0;
       while ((end = strchr(start, '.')) || (end = strchr(start, '/'))) {
             size_t size = end - start;
             returnArray[i] = malloc(sizeof(char) * size);
@@ -116,7 +115,13 @@ void scopeExtract(char *ipAdress,char **returnArray, char *returnMask){
             if(!memcpy(returnArray[i], start, size))
                   fprintf(stderr,"Erreur lors de la copie du contenu de l'addresse IP a l'octet %d.\n", i);
             returnArray[i++][size] = '\0';
-
             start = end + 1;
       }
+
+      returnMask = malloc(sizeof(char)*strlen(start));
+      for(unsigned int j = 0; j < strlen(start);j++){
+            returnMask[j] = start[j];
+      }
+      returnMask[strlen(start)] = 0;
+      printf("%s\n",*returnMask);
 }
