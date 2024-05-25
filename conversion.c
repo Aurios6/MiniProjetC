@@ -93,10 +93,6 @@ int verifierFormat(char *ipAdress){
             }
       }
 
-      /*
-            ceck mask value
-      */
-
       if(ipAdressIntTab[4] < 0 || ipAdressIntTab[4] > 32){
             printf("INVALID IP ADRESS mask\n\n");
             return 1;
@@ -111,37 +107,37 @@ int verifierFormat(char *ipAdress){
       Check the class
 */
 
-int checkClass(int *firstOctet, int *secondOctet)
-{
-    for (int i = 0; i < 8; i++) {
-        if (firstOctet[i] >= 0 && firstOctet[i] <= 127 && firstOctet[i] == 10) {
-            printf("Class A, private\n");
+char *checkClass(int *tab) {
+
+        if (tab[0] >= 0 && tab[0] <= 127 && tab[0] == 10) {
+            return "Classe A, privée";
         }
-        else if (firstOctet[i] >= 0 && firstOctet[i] <= 127 && firstOctet[i] != 10) {
-            printf("Class A, public\n");
+        else if (tab[0] >= 0 && tab[0] <= 127 && tab[0] != 10) {
+            return "Class A, publique";
         }
-        else if (firstOctet[i] == 172 && secondOctet[i] >= 16 && secondOctet[i] <=31) {
-            printf("Class B, private\n");
+        else if (tab[0] == 172 && tab[1] >= 16 && tab[1] <=31) {
+            return "Class B, privée";
         }
-        else if (firstOctet[i] >= 128 && firstOctet[i] <= 191) {
-            printf("Class B, public\n");
-        }else if (firstOctet[i] >= 192 && secondOctet[i] ==168) {
-            printf("Class C, private\n");
+        else if (tab[0] >= 128 && tab[0] <= 191) {
+            return "Class B, publique";
+        }else if (tab[0] >= 192 && tab[1] ==168) {
+            return "Class C, privée";
         }
-        else if (firstOctet[i] >= 192 && firstOctet[i] <= 223) {
-            printf("Class C, public\n");
-        } else if (firstOctet[i] >= 224 && firstOctet[i] <= 239) {
-            printf("Class D, multicast\n");
-        } else if (firstOctet[i] >= 240 && firstOctet[i] <= 255) {
-            printf("Class E, experimental\n");
-        }
+        else if (tab[0] >= 192 && tab[0] <= 223) {
+            return "Class C, publique";
+        } 
+        else if (tab[0] >= 224 && tab[0] <= 239) {
+            return "Class D, adresse multicast";
+        } 
+        else if (tab[0] >= 240 && tab[0] <= 255) {
+            return "Class E, adresse experimentale";
+      }
+
+        return "Classe invalide";
     }
 
 
-    return 0;
-}
-
-
+/*
       int ipAdressLen = strlen(ipAdress);
       char ipAdressArray[ipAdressLen + 1];
       strcpy(ipAdressArray, ipAdress);
@@ -164,4 +160,6 @@ int checkClass(int *firstOctet, int *secondOctet)
       printf("\n");
 
       return ;
+      
 }
+*/

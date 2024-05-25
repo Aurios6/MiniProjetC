@@ -33,4 +33,4 @@
 
 void affTest();
 int verifierFormat(char *ipAdress);
-int checkClass(int *firstOctet, int *SecondOctet);
+char *decoderIP(int *tab);
