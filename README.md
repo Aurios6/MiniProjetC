@@ -25,21 +25,21 @@ Déclenche une erreur si le fichier pris en paramètre n'a pas pu être ouvert
 #### Fichier conversion.c
 
 * verifierFormat :
-  E : une chaine de caractere
-  S : int (1 si le résultat n'est pas valide, 0 sinon)
-  Err : Si l'adresse IP possède un format invalide
+  E : une chaine de caractere  
+  S : int (1 si le résultat n'est pas valide, 0 sinon)  
+  Err : Si l'adresse IP possède un format invalide  
 * extractionDesChamps
-  E : une chaine de caractere (l'adresse IP), une liste de chaine de caractere
-  S : une chaine de caracter (le masque au format ``string``)
-  Err : A l'allocation mémoire, a l'éxéction de ``memcpy``
+  E : une chaine de caractere (l'adresse IP), une liste de chaine de caractere  
+  S : une chaine de caracter (le masque au format ``string``)  
+  Err : A l'allocation mémoire, a l'éxéction de ``memcpy``  
 * convertToInt :
-  E : les 2 chaine de caracter avec les valeurs IP et le masque au format ``string``, retourn les valeurs IP et le masque au fomrat ``int`` 
-  S : void
-  Err : Si l'adresse IP possède un format invalide
+  E : les 2 chaine de caracter avec les valeurs IP et le masque au format ``string``, retourn les valeurs IP et le masque au fomrat ``int``   
+  S : void  
+  Err : Si l'adresse IP possède un format invalide  
 * verifierFormat :
-  E : un tableau d'entier (l'adresse IP sans le masque)
-  S : une chaine de caractere indiquant la classe de l'adresse IP
-  Err : Si l'adresse IP possède un format invalide
+  E : un tableau d'entier (l'adresse IP sans le masque)  
+  S : une chaine de caractere indiquant la classe de l'adresse IP  
+  Err : Si l'adresse IP possède un format invalide  
 
 
 ### Pré-requis
