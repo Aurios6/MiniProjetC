@@ -3,6 +3,8 @@
             "strmanipulation.h": "c",
             "stdio.h": "c",
             "convertion.h": "c",
-            "auxiliaryfunction.h": "c"
+            "auxiliaryfunction.h": "c",
+            "string.h": "c",
+            "stdlib.h": "c"
       }
 }
