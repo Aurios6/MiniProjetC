@@ -30,21 +30,21 @@ _exemples :_
 * [VisualStudioCode]([http://materializecss.com](https://code.visualstudio.com))
 
 
-## Contributing
-
-Si vous souhaitez contribuer, lisez le fichier [CONTRIBUTING.md](https://example.org) pour savoir comment le faire.
 
 ## Versions
-Listez les versions ici 
-_exemple :_
-**Dernière version stable :** 5.0
-**Dernière version :** 5.1
-Liste des versions : [Cliquer pour afficher](https://github.com/your/project-name/tags)
-_(pour le lien mettez simplement l'URL de votre projets suivi de ``/tags``)_
+Une seul version est disponible pour le moment
+
+**Dernière version stable :** 1.0  
+**Dernière version :** 1.0
 
 ## Auteurs
 Listez le(s) auteur(s) du projet ici !
 * **Jhon doe** _alias_ [@outout14](https://github.com/outout14)
+
+Ce projet à été fait par:\
+
+* Aurélien Vincent--Randonnier _alias_
+* Nathanel Daunis _alias_ [Stefffox](https://github.com/Aurios6/MiniProjetC/Stefffox)
 
 Lisez la liste des [contributeurs](https://github.com/your/project/contributors) pour voir qui à aidé au projet !
 
