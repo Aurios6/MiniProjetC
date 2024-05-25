@@ -7,12 +7,39 @@ Ce projet est un projet scolaire fait dans le cadre de l'apprentissage de la pro
 Ce projet supporte l'utilisation de fichier ``.txt`` en entrer. Pour ce faire il suffira a l'éxection d'indiquer un fichier ``.txt`` de la façon suivante ``./main votreFichier.txt``.\
 Ce n'est cependant pas un prérequis une version avec entrer dans la console est aussi integrer directement. Il suffit de ne pas fournir de fichier lors de l'exectuon du programme.
 
-Ce projet à été fait par:\
+Ce projet à été fait par:
 
 * Aurélien Vincent--Randonnier _alias_ [@Aurrios6](https://github.com/Aurios6)
 * Nathanel Daunis _alias_ [@Stefffox](https://github.com/Stefffox)
 
 Lisez la liste des [contributeurs](https://github.com/Aurios6/MiniProjetC/contributors) pour voir qui à aidé au projet !
+
+### Fonction
+
+#### Fichier main.c
+
+* Paramètre d'entrer --> char []
+* Paramètre de sortie --> int
+Déclenche une erreur si le fichier pris en paramètre n'a pas pu être ouvert
+
+#### Fichier conversion.c
+
+* verifierFormat :
+  E : une chaine de caractere
+  S : int (1 si le résultat n'est pas valide, 0 sinon)
+  Err : Si l'adresse IP possède un format invalide
+* extractionDesChamps
+  E : une chaine de caractere (l'adresse IP), une liste de chaine de caractere
+  S : une chaine de caracter (le masque au format ``string``)
+  Err : A l'allocation mémoire, a l'éxéction de ``memcpy``
+* convertToInt :
+  E : les 2 chaine de caracter avec les valeurs IP et le masque au format ``string``, retourn les valeurs IP et le masque au fomrat ``int`` 
+  S : void
+  Err : Si l'adresse IP possède un format invalide
+* verifierFormat :
+  E : un tableau d'entier (l'adresse IP sans le masque)
+  S : une chaine de caractere indiquant la classe de l'adresse IP
+  Err : Si l'adresse IP possède un format invalide
 
 
 ### Pré-requis
@@ -36,7 +63,6 @@ Ce projet à été conçu exlusivement avec :
 
 _exemples :_
 * [VisualStudioCode](https://code.visualstudio.com)
-
 
 
 ## Versions
