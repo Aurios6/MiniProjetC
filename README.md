@@ -1,21 +1,15 @@
 # Titre du projet
-_(juste en dessous des badges sympatiques à placer)_
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
-
-Une petite description du projet
+Ce projet est un projet scolaire fait dans le cadre de l'apprentissage de la programmation bas niveau à l'IUT Paul Sabatier à Toulouse. L'objectif du programme est de le but de développer des applications de gestion de parcs informatique, l’étude et l’extraction d’informations provenant d’une adresse IP et de son masque réseau.
 
 ## Pour commencer
 
-Entrez ici les instructions pour bien débuter avec votre projet...
+Ce projet supporte l'utilisation de fichier ``.txt`` en entrer. Pour ce faire il suffira a l'éxection d'indiquer un fichier ``.txt`` de la façon suivante ``./main votreFichier.txt``.\
+Ce n'est cependant pas un prérequis une version avec entrer dans la console est aussi integrer directement. Il suffit de ne pas fournir de fichier lors de l'exectuon du programme.
 
 ### Pré-requis
 
-Ce qu'il est requis pour commencer avec votre projet...
-
-- Programme 1
-- Programme 2
-- etc...
+Aucune libraire extèrieur n'est utilisé dans ce projet.
 
 ### Installation
 
@@ -23,7 +17,7 @@ Les étapes pour installer votre programme....
 
 Dites ce qu'il faut faire...
 
-_exemple_: Executez la commande ``telnet mapscii.me`` pour commencer ensuite [...]
+Exectuer la commande ``./main votreFichier.txt`` ou bien ``./main`` depuis le repertoir du projet.
 
 
 Ensuite vous pouvez montrer ce que vous obtenez au final...
