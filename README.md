@@ -7,6 +7,14 @@ Ce projet est un projet scolaire fait dans le cadre de l'apprentissage de la pro
 Ce projet supporte l'utilisation de fichier ``.txt`` en entrer. Pour ce faire il suffira a l'éxection d'indiquer un fichier ``.txt`` de la façon suivante ``./main votreFichier.txt``.\
 Ce n'est cependant pas un prérequis une version avec entrer dans la console est aussi integrer directement. Il suffit de ne pas fournir de fichier lors de l'exectuon du programme.
 
+Ce projet à été fait par:\
+
+* Aurélien Vincent--Randonnier _alias_ [@Aurrios6](https://github.com/Aurios6)
+* Nathanel Daunis _alias_ [@Stefffox](https://github.com/Stefffox)
+
+Lisez la liste des [contributeurs](https://github.com/Aurios6/MiniProjetC/contributors) pour voir qui à aidé au projet !
+
+
 ### Pré-requis
 
 Aucune libraire extèrieur n'est utilisé dans ce projet.
@@ -41,12 +49,6 @@ Une seul version est disponible pour le moment
 Listez le(s) auteur(s) du projet ici !
 * **Jhon doe** _alias_ [@outout14](https://github.com/outout14)
 
-Ce projet à été fait par:\
-
-* Aurélien Vincent--Randonnier _alias_ [@Aurrios6](https://github.com/Aurios6)
-* Nathanel Daunis _alias_ [@Stefffox](https://github.com/Stefffox)
-
-Lisez la liste des [contributeurs](https://github.com/Aurios6/MiniProjetC/contributors) pour voir qui à aidé au projet !
 
 ## License
 
