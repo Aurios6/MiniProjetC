@@ -30,20 +30,13 @@
 
 
 int main(){
-      //affTest();
-      char* ipTest = "145.79.198.6/24";
-      char* ipTest2 = "175.79.198.675/24";
-      char* ipTest3 = "145.79.18.6/24";
-      char* ipTest4 = ".../";
-      
-      //Valeur de retour
-      char **returnArrayString;
-      char *returnMask;
 
-     global(ipTest);
-     global(ipTest2);
-     global(ipTest3);
-     global(ipTest4);
+      char ipAdress;
+
+      printf("Veuillez entrer une adress IP: ");
+      scanf("%s", &ipAdress);
+      global(&ipAdress);
+
 
       return 0;
 }
