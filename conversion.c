@@ -162,3 +162,31 @@ int nbOfChar (char *str, char target){
     }
     return res;
 }
+
+char *decoderIP(int *tab) {
+
+        if (tab[0] >= 0 && tab[0] <= 127 && tab[0] == 10) {
+            return "Classe A, privee";
+        }
+         else if (tab[0] >= 0 && tab[0] <= 127 && tab[0] != 10) {
+            return "Class A, publique";
+        }
+         else if (tab[0] == 172 && tab[1] >= 16 && tab[1] <=31) {
+            return "Class B, privee";
+        }
+         else if (tab[0] >= 128 && tab[0] <= 191) {
+            return "Class B, publique";
+        }else if (tab[0] >= 192 && tab[1] ==168) {
+            return "Class C, privee";
+        }
+            else if (tab[0] >= 192 && tab[0] <= 223) {
+            return "Class C, publique";
+        } 
+        else if (tab[0] >= 224 && tab[0] <= 239) {
+            return "Class D, adresse multicast";
+        } 
+        else if (tab[0] >= 240 && tab[0] <= 255) {
+            return "Class E, adresse experimentale";
+      }
+           return "Classe invalide";
+}

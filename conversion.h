@@ -37,3 +37,4 @@ char* scopeExtract(char *ipAdress, char **returnArray);
 void convertToInt(char **ipAdressArrayString, char *maskString, int* ipAdressArrayInt, int *maskInt );
 void global(char *ipAdress);
 int nbOfChar (char *str, char target);
+char *decoderIP(int *tab);
