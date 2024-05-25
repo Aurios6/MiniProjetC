@@ -33,7 +33,7 @@ Déclenche une erreur si le fichier pris en paramètre n'a pas pu être ouvert
   S : une chaine de caracter (le masque au format ``string``)  
   Err : A l'allocation mémoire, a l'éxéction de ``memcpy``  
 * convertToInt :
-  E : les 2 chaine de caracter avec les valeurs IP et le masque au format ``string``, retourn les valeurs IP et le masque au fomrat ``int``   
+  E : les 2 chaine de caracter avec les valeurs IP et le masque au format ``string``, retourn les valeurs IP et le masque au format ``int``   
   S : void  
   Err : Si l'adresse IP possède un format invalide  
 * verifierFormat :
