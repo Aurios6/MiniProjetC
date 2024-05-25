@@ -14,4 +14,4 @@ conversion.o:conversion.c conversion.h auxiliaryFunction.h
 auxiliaryFunction.o: auxiliaryFunction.c auxiliaryFunction.h
 	$(CC) $(CFLAGS) -c auxiliaryFunction.c
 clean:
-	$(RM) $(OBJ) $(EXE)
+	$(RM) $(OBJ)
