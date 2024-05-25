@@ -27,7 +27,7 @@ Vous devriez obtenir un résultat semblable à celui ci -->
 Ce projet à été conçu exlusivement avec :
 
 _exemples :_
-* [VisualStudioCode]([http://materializecss.com](https://code.visualstudio.com))
+* [VisualStudioCode](https://code.visualstudio.com)
 
 
 
@@ -43,10 +43,10 @@ Listez le(s) auteur(s) du projet ici !
 
 Ce projet à été fait par:\
 
-* Aurélien Vincent--Randonnier _alias_
+* Aurélien Vincent--Randonnier _alias_ [@Aurrios6](https://github.com/Aurios6)
 * Nathanel Daunis _alias_ [@Stefffox](https://github.com/Stefffox)
 
-Lisez la liste des [contributeurs](https://github.com/your/project/contributors) pour voir qui à aidé au projet !
+Lisez la liste des [contributeurs](https://github.com/Aurios6/MiniProjetC/contributors) pour voir qui à aidé au projet !
 
 _(pour le lien mettez simplement l'URL de votre projet suivi de ``/contirubors``)_
 
