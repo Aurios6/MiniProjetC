@@ -50,5 +50,5 @@ Lisez la liste des [contributeurs](https://github.com/Aurios6/MiniProjetC/contri
 
 ## License
 
-Ce projet est sous licence ``exemple: WTFTPL`` - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
+Ce projet est sous licence `MIT License`` - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
 
