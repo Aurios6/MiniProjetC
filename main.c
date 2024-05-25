@@ -28,6 +28,7 @@
 #include "conversion.h"
 #include "auxiliaryFunction.h"
 
+
 int main(){
 
       //affTest();
@@ -36,25 +37,23 @@ int main(){
       char* ipTest3 = "145.79.18.6/24";
       char* ipTest4 = ".../";
 
+      /*
       printf("\nTest1\n");
       verifierFormat(ipTest);
-      printf("\nTest2\n");
+      printf("Test2\n");
       verifierFormat(ipTest2);
-      printf("\nTest3\n");
+      printf("Test3\n");
       verifierFormat(ipTest3);
-      printf("\nTest4\n");
+      printf("Test4\n");
       verifierFormat(ipTest4);
+      */
 
-      char extractedScope[5][10];
 
-      if (verifierFormat(ipTest) == 0){
-            scopeExtract(ipTest,extractedScope);
-      }
+     global(ipTest);
+     global(ipTest2);
+     global(ipTest3);
+     global(ipTest4);
 
-      printf("Part 2\n");
-      for(int i=0;i<5;i++ ){
-            printf("%s ",extractedScope[i]);
-      }
-      
+
       return 0;
 }

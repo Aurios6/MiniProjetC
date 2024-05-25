@@ -23,21 +23,14 @@
 *  Nom du fichier : conversion.c                                              *
 *                                                                             *
 ******************************************************************************/
-
 #include "conversion.h"
-
-/*
-      verifier format prend en paramètre un pointeur vers Char
-      Scan the char *ipAdress and stop when the pointer point to the caracter that close a chain
-      Move across the chain wihe ipAdress++
-*/
 
 int verifierFormat(char *ipAdress){
 
-      int ipAdressIntTab [10];
+      int ipAdressIntTab[10];
 
       if (nbOfChar(ipAdress, '.') != 3 || nbOfChar(ipAdress, '/') != 1){
-            printf("Return 0 nb char . /\n\n");
+            fprintf(stderr,"Return 0 nb char . /\n");
             return 0;
       }
 
@@ -47,8 +40,8 @@ int verifierFormat(char *ipAdress){
 
       for(int i=0; ipAdress[i] != '\0'; i++){
             if(!isdigit(ipAdress[i]) && ipAdress[i] != '.' && ipAdress[i] != '/'){
-                  printf("NOT A DIGIT\n\n");
-                  return 1;
+                  fprintf(stderr,"NOT A DIGIT\n");
+                  return 0;
             }      
       }
 
@@ -66,18 +59,16 @@ int verifierFormat(char *ipAdress){
       int indexIpTab = 0;
       while (strToken != NULL){
             ipAdressIntTab[indexIpTab] = atoi(strToken);
-            printf("%d.", ipAdressIntTab[indexIpTab]);
             indexIpTab++;
             strToken = strtok(NULL,separator);
       }
-      printf("\n");
 
       /*
             Check size
       */
 
       if(indexIpTab!=5){
-            printf("INVALID IP ADRESS size\n\n");
+            fprintf(stderr,"INVALID IP ADRESS size\n");
             return 0;
       }
 
@@ -87,48 +78,87 @@ int verifierFormat(char *ipAdress){
       
       for(int i = 0; i<indexIpTab;i++){
             if(ipAdressIntTab[i]<0 || ipAdressIntTab[i] > 255){
-                  printf("INVALID IP ADRESS value\n\n");
-                  return 1;
+                  fprintf(stderr,"INVALID IP ADRESS value\n");
+                  return 0;
             }
       }
 
       /*
-            ceck mask value
+            check mask value
       */
 
       if(ipAdressIntTab[4] < 0 || ipAdressIntTab[4] > 32){
-            printf("INVALID IP ADRESS mask\n\n");
-            return 1;
+            fprintf(stderr,"INVALID IP ADRESS mask\n");
+            return 0;
       }
 
-      printf("Valid Ip adress\n\n");          
-
-      return 0;
+      return 1;
 }
 
-void scopeExtract(char *ipAdress,char **returnArray){
-      printf("------------------SCOPE EXTRACT-----------------\n\n");
+char* scopeExtract(char *ipAdress,char **returnArray){
+      char *start = ipAdress;
+      char *end;
 
-      int ipAdressLen = strlen(ipAdress);
-      char ipAdressArray[ipAdressLen + 1];
-      strcpy(ipAdressArray, ipAdress);
+      int i = 0;
+      while ((end = strchr(start, '.')) || (end = strchr(start, '/'))) {
+            size_t size = end - start;
+            returnArray[i] = malloc(sizeof(char) * size);
+            if(!returnArray[i])
+                  fprintf(stderr,"Erreur lors de l'allocation memoire pour de la partie %d de l'addresse IP.\n", i);
+            if(!memcpy(returnArray[i], start, size))
+                  fprintf(stderr,"Erreur lors de la copie du contenu de l'addresse IP a l'octet %d.\n", i);
+            returnArray[i++][size] = '\0';
+            
+            
 
-      char *separator = "./";
-      char *strToken = strtok(ipAdressArray,separator);
-
-      int indexReturnArray = 0;
-
-      printf("THE IP ADRESS --> ");
-      while (strToken){
-            printf("%s ", strToken);
-            strncpy(returnArray[indexReturnArray],strToken,10);
-            printf("CP2\n");
-            strToken = strtok(NULL,separator);
-            indexReturnArray++;
+            start = end + 1;
       }
+      //Return the mask
+      return start;
+}
 
+void convertToInt(char **ipAdressArrayString, char *maskString, int* ipAdressArrayInt, int *maskInt ){
+      for(int i=0; i<4;i++){
+            ipAdressArrayInt[i] = atoi(ipAdressArrayString[i]);
+      }
+      *maskInt = atoi(maskString);
+}
+
+
+void global(char *ipAdress){
+      printf("AdressIP : %s\n", ipAdress);
+
+      char* extractedScope[4];
+      char *mask;
+      int ipAdressArrayInt[4];
+      int maskInt;
       
-      printf("\n");
+      if (verifierFormat(ipAdress) == 0){
+            printf("ERREUR\n");
+      }else{
+            mask = scopeExtract(ipAdress,extractedScope);
+            convertToInt(extractedScope,mask,ipAdressArrayInt,&maskInt);
 
-      return;
+
+            //affichage
+            for(int i=0;i<4;i++ ){
+                  printf("%d ",ipAdressArrayInt[i]);
+            }
+            printf("/");
+            printf("%d\n",maskInt);
+      }
+      printf("\n");
+}
+
+
+int nbOfChar (char *str, char target){
+    
+    int res = 0;
+
+    for(int i=0; str[i] != '\0'; i++){
+        if(str[i] == target){
+            res += 1;
+        }
+    }
+    return res;
 }
