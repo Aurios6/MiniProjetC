@@ -44,7 +44,7 @@ Listez le(s) auteur(s) du projet ici !
 Ce projet à été fait par:\
 
 * Aurélien Vincent--Randonnier _alias_
-* Nathanel Daunis _alias_ [Stefffox](https://github.com/Aurios6/MiniProjetC/Stefffox)
+* Nathanel Daunis _alias_ [@Stefffox](https://github.com/Stefffox)
 
 Lisez la liste des [contributeurs](https://github.com/your/project/contributors) pour voir qui à aidé au projet !
 
