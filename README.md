@@ -20,19 +20,15 @@ Dites ce qu'il faut faire...
 Exectuer la commande ``./main votreFichier.txt`` ou bien ``./main`` depuis le repertoir du projet.
 
 
-Ensuite vous pouvez montrer ce que vous obtenez au final...
-
-## Démarrage
-
-Dites comment faire pour lancer votre projet
+Vous devriez obtenir un résultat semblable à celui ci -->
 
 ## Fabriqué avec
 
-Entrez les programmes/logiciels/ressources que vous avez utilisé pour développer votre projet
+Ce projet à été conçu exlusivement avec :
 
 _exemples :_
-* [Materialize.css](http://materializecss.com) - Framework CSS (front-end)
-* [Atom](https://atom.io/) - Editeur de textes
+* [VisualStudioCode]([http://materializecss.com](https://code.visualstudio.com))
+
 
 ## Contributing
 
