@@ -74,10 +74,6 @@ Vous devriez obtenir un résultat semblable à celui-ci -->
 **Dernière version stable :** 1.0  
 **Dernière version :** 1.0
 
-## Auteurs
-Listez le(s) auteur(s) du projet ici !
-* **Jhon doe** _alias_ [@outout14](https://github.com/outout14)
-
 
 ## License
 
