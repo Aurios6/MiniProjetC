@@ -139,25 +139,25 @@ void convertToInt(char **ipAdressArrayString, char *maskString, int* ipAdressArr
 
 char *decoderIP(int *tab) {
         if (tab[0] >= 0 && tab[0] <= 127 && tab[0] == 10) {
-            return "Class A et est prive";
+            return "Class A et de type prive";
         }
         else if (tab[0] >= 0 && tab[0] <= 127 && tab[0] != 10) {
-            return "Class A et est public";
+            return "Class A et de type public";
         }
         else if (tab[0] == 172 && tab[1] >= 16 && tab[1] <=31) {
-            return "Class B et est prive";
+            return "Class B et de type prive";
         }
         else if (tab[0] >= 128 && tab[0] <= 191) {
-            return "Class B et est public";
+            return "Class B et de type public";
         }else if (tab[0] >= 192 && tab[1] ==168) {
-            return "Class C et est prive";
+            return "Class C et de type prive";
         }
         else if (tab[0] >= 192 && tab[0] <= 223) {
-            return "Class C et est public";
+            return "Class C et de type public";
         } else if (tab[0] >= 224 && tab[0] <= 239) {
-            return "Class D et est multicast";
+            return "Class D et de type multicast";
         } else if (tab[0] >= 240 && tab[0] <= 255) {
-            return "Class E et est experimental";
+            return "Class E et de type experimental";
       }
 
         return " invalide";
@@ -179,7 +179,8 @@ void decoderMasqueIP(int *arrayIp, int masque, FILE *nomFichier){
                   ipAdressFull = ipAdressFull << 8;
             }
       }
-     
+
+
      /*
             convertis le masque en long long pour ensuite utiliser les oppérateurs sur les bits
      */
@@ -190,15 +191,17 @@ void decoderMasqueIP(int *arrayIp, int masque, FILE *nomFichier){
       for(int indicePuiss = 0; indicePuiss<puissance;indicePuiss++){
             puissanceRes *= 2;
       }
+
       masqueComplet = 4294967296 - puissance;
 
       //manipulation sur les bits
       unsigned long long adresseReseaux = ipAdressFull & masqueComplet;
       unsigned long long adresseHote = ipAdressFull & ~masqueComplet;
 
+
       fprintf(nomFichier,"L'adresse réseaux est : ");
       afficherAdresseIpDepuisLLU(adresseReseaux, nomFichier);
-      fprintf(nomFichier,"L'adresse réseaux est : ");
+      fprintf(nomFichier,"L'adresse hôte est : ");
       afficherAdresseIpDepuisLLU(adresseHote, nomFichier);
 
       return;
@@ -231,9 +234,9 @@ void global(char *ipAdress){
             convertToInt(champsExtraitString,mask,ipAdressArrayInt,&maskInt);
             //affichage
 
-            fprintf(fichierSortie, "L'adresse IP : %d.%d.%d.%d:%d \n", ipAdressArrayInt[0], ipAdressArrayInt[1],
+            fprintf(fichierSortie, "L'adresse IP : %d.%d.%d.%d/%d ", ipAdressArrayInt[0], ipAdressArrayInt[1],
             ipAdressArrayInt[2], ipAdressArrayInt[3], maskInt);
-            fprintf(fichierSortie, "Est de type %s \n",decoderIP(ipAdressArrayInt));
+            fprintf(fichierSortie, "cette dernière est de %s \n",decoderIP(ipAdressArrayInt));
             decoderMasqueIP(ipAdressArrayInt,maskInt, fichierSortie);
             
             fprintf(fichierSortie,"\n");
@@ -259,17 +262,20 @@ int nbOfChar (char *str, char target){
 }
 
 int entierVersBin(unsigned long long entier){
-      unsigned long long a[128];
-      int i; 
-      for(i=0;entier>0;i++){    
-            a[i]=entier%2;    
-            entier=entier/2;
-      }    
+      int compteur = 0;
 
-      for(i=i-1;i>=0;i--){    
-            printf("%d",a[i]);    
+      for(int i = 31; i >= 0; i--){
+            printf("%d",(entier >> i) & 1);
+            compteur ++;
+
+            //Le i != 1 permet d'eviter d'ecrire un point à la fin de l'adresse IP
+            if(compteur == 8 && i != 0){
+                  printf(".");
+                  compteur = 0;
+            }
       }
-      return 0;  
+      printf("\n");
+      return 1;
 }
 
 
