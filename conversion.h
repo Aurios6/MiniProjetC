@@ -33,7 +33,8 @@
 int verifierFormat(char *ipAdress);
 char* extractionDesChamps(char *ipAdress, char **returnArray);
 void convertToInt(char **ipAdressArrayString, char *maskString, int* ipAdressArrayInt, int *maskInt );
-char *decoderIP(int *tab);
-void global(char *ipAdress, int *aOuvert);
+void decoderMasqueIP(int *arrayIp, int masque, FILE *nomFichier);
+void global(char *ipAdress);
 int nbOfChar (char *str, char target);
-char *decoderIP(int *tab);
+int entierVersBin(unsigned long long entier);
+void afficherAdresseIpDepuisLLU(unsigned long long adresse, FILE *nomFichier);

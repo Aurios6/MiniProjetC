@@ -15,8 +15,8 @@ Ce projet a été fait par :
 Lisez la liste des [contributeurs](https://github.com/Aurios6/MiniProjetC/contributors) pour voir qui à aidé au projet !
 
 ### Fonction
-
-[LeProjet](https://github.com/Aurios6/MiniProjetC)
+[LeProjetGitLab](https://gitlab.info.iut-tlse3.fr/vnr4817a/MiniProjetC)
+[LeProjetGitHub](https://github.com/Aurios6/MiniProjetC)
 
 #### Fichier main.c
 
@@ -42,15 +42,30 @@ Err : Si l'adresse IP possède un format invalide
 E : un tableau d'entier (l'adresse IP sans le masque)  
 S : une chaîne de caractère indiquant la classe de l'adresse IP  
 Err : Si l'adresse IP possède un format invalide
+* decoderIP --> indique la classe de l'adresse et sont type
+E : un tableau contenant l'adresse IP au format entier  
+S : une chaîne de caractère  
+Err : none  
+* decoderMasqueIP --> indique le masque réseaux et hôte
+E : une liste d'entier contenant l'adresse IP, un entier contenant le masque, un pointeur vers un fichier pour pouvoir écrire dans ce dernier  
+S : void
+Err : none
 * global -- La fonction qui appelle les autres et lance l'écriture dans un fichier
 E : une chaîne de caractère (L'adresse IP au format ``string``, un entier indiquant que le fichier a déjà été ouvert)(permet de ne pas écrase le contenu si plusieurs adresse ip sont fournis)  
 S : void (fais uniquement de l'affichage)  
 Err : Si le fichier dans lequel les réponses vont être écrite n'a pas pu être ouvert/créé
 * nbOfChar
 E : une chaîne de caractère, la caractèrecible a compté.  
-s : un entier égale au nombre de caractère cible  
+S : un entier égale au nombre de caractère cible  
 Err : none  
-
+* entierVersBin
+E : une chaîne de caractère  
+S : void  
+Err : none  
+* afficherAdresseIpDepuisLLU --> Ecrit dans le fichier l'adresse IP en binaire
+E : un unsiged long long (l'adresse IP), le fichier dans lequel écrire
+S : void
+Err : none
 
 ### Pré-requis
 
