@@ -30,7 +30,7 @@ int verifierFormat(char *ipAdress){
       int ipAdressIntTab[10];
 
       if (nbOfChar(ipAdress, '.') != 3 || nbOfChar(ipAdress, '/') != 1){
-            fprintf(stderr,"PAS suffisament de . /\n");
+            fprintf(stderr,"Pas suffisament de . /\n");
             return 1;
       }
 
@@ -163,7 +163,7 @@ void global(char *ipAdress, int *aOuvert){
       FILE *fichierSortie = fopen("fichierDeSortie.txt", modeOuverture);
       if(fichierSortie == NULL){
             fprintf(stderr, "Le fichier n'a pas pu etre créé ni ouvert");
-      return;
+            return;
       }
       printf("AdressIP : %s\n", ipAdress);
 

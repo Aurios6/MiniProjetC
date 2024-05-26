@@ -26,7 +26,6 @@
 
 #include <stdio.h>
 #include "conversion.h"
-#include "auxiliaryFunction.h"
 
 
 int main(int argc, char *argv[]){

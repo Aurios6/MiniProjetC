@@ -29,7 +29,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "auxiliaryFunction.h"
 
 void affTest();
 int verifierFormat(char *ipAdress);
