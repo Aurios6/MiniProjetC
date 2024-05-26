@@ -192,13 +192,14 @@ void decoderMasqueIP(int *arrayIp, int masque, FILE *nomFichier){
             puissanceRes *= 2;
       }
 
-      masqueComplet = 4294967296 - puissance;
+      masqueComplet = 4294967296 - puissanceRes;
 
       //manipulation sur les bits
       unsigned long long adresseReseaux = ipAdressFull & masqueComplet;
       unsigned long long adresseHote = ipAdressFull & ~masqueComplet;
 
-
+      fprintf(nomFichier,"L'adresse IP en binaire est : ");
+      afficherAdresseIpDepuisLLU(ipAdressFull, nomFichier);
       fprintf(nomFichier,"L'adresse réseaux est : ");
       afficherAdresseIpDepuisLLU(adresseReseaux, nomFichier);
       fprintf(nomFichier,"L'adresse hôte est : ");
