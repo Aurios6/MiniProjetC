@@ -39,7 +39,11 @@ Déclenche une erreur si le fichier pris en paramètre n'a pas pu être ouvert
 * verifierFormat :
   E : un tableau d'entier (l'adresse IP sans le masque)  
   S : une chaine de caractere indiquant la classe de l'adresse IP  
-  Err : Si l'adresse IP possède un format invalide  
+  Err : Si l'adresse IP possède un format invalide
+* global -- C'est la fonction qui appel les autres et lance l'écriture dans un fichier
+  E : une chain de carctere (l'adrsse IP au format ``string``, un entier indiquant que le fichier a deja été ouvert (permet de ne pas ecrasé le contenu si plusieur adresse ip sont fournis)
+  S : void (fais uniquement de l'affichage)
+  Err : Si le fichier dans lequel les réponse vont etre ecrite n'a pas pu être ouvert /créé
 
 
 ### Pré-requis
