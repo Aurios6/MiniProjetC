@@ -92,7 +92,7 @@ int verifierFormat(char *ipAdress){
             Verifie que la valeur du masque est correcte
       */
 
-      if(ipAdressIntTab[4] < 0 || ipAdressIntTab[4] > 32){
+      if(ipAdressIntTab[4] <= 0 || ipAdressIntTab[4] >= 32){
             fprintf(stderr, "ERREURE : ");
             fprintf(stderr,"Masque de l'adresse IP invalide\n");
             return 1;
@@ -164,6 +164,50 @@ char *decoderIP(int *tab) {
 }
 
 
+void decoderMasqueIP(int *arrayIp, int masque, FILE *nomFichier){
+
+      unsigned long long ipAdressFull = 0;
+      unsigned long long masqueComplet = 0;
+
+      /*
+            Conversion de l'adresse IP en entier pour ensuite utiliser les oppérateurs sur les bits
+      */
+
+     
+      for(int j = 0; j < 4; j++){
+            ipAdressFull |= (unsigned int)(arrayIp[j]);
+            if(j!=3){
+                  ipAdressFull = ipAdressFull << 8;
+            }
+      }
+     
+     /*
+      convertis le masque en long long pour ensuite utiliser les oppérateurs sur les bits
+     */
+
+    // 
+
+      
+      int puissance = 32 - masque;
+      unsigned long long val = 1;
+      for(int k = 0; k<puissance;k++){
+            val *= 2;
+      }
+      
+      masqueComplet = 4294967296 - val;
+
+      unsigned long long adresseReseaux = ipAdressFull & masqueComplet;
+      unsigned long long adresseHote = ipAdressFull & ~masqueComplet;
+
+      fprintf(nomFichier,"L'adresse réseaux est : ");
+      afficherAdresseIpDepuisLLU(adresseReseaux, nomFichier);
+      fprintf(nomFichier,"L'adresse réseaux est : ");
+      afficherAdresseIpDepuisLLU(adresseHote, nomFichier);
+
+      return;
+}
+
+
 void global(char *ipAdress, int *aOuvert){
 
       /*
@@ -172,9 +216,9 @@ void global(char *ipAdress, int *aOuvert){
       */
 
       char *modeOuverture;
-      if(aOuvert == 0){
+      if(*aOuvert == 0){
             modeOuverture = "w";
-            aOuvert = 1;
+            *aOuvert = 1;
       }else{
             modeOuverture = "a";
       }
@@ -199,13 +243,14 @@ void global(char *ipAdress, int *aOuvert){
       }else{
             mask = extractionDesChamps(ipAdress,champsExtraitString);
             convertToInt(champsExtraitString,mask,ipAdressArrayInt,&maskInt);
-
             //affichage
 
-            fprintf(fichierSortie, "L'adresse IP : %d.%d.%d.%d:%d \n", ipAdressArrayInt[0], ipAdressArrayInt[1], ipAdressArrayInt[2], ipAdressArrayInt[3], maskInt);
-            fprintf(fichierSortie, "Est de type %s ",decoderIP(ipAdressArrayInt));
-            fprintf(fichierSortie, "et dont masque est \n\n");
+            fprintf(fichierSortie, "L'adresse IP : %d.%d.%d.%d:%d \n", ipAdressArrayInt[0], ipAdressArrayInt[1],
+            ipAdressArrayInt[2], ipAdressArrayInt[3], maskInt);
+            fprintf(fichierSortie, "Est de type %s \n",decoderIP(ipAdressArrayInt));
+            decoderMasqueIP(ipAdressArrayInt,maskInt, fichierSortie);
             
+            fprintf(fichierSortie,"\n");
             fclose(fichierSortie);
 
             // champsExtraitString n'a plus d'utilité il faut donc libérer le mémoire
@@ -228,5 +273,40 @@ int nbOfChar (char *str, char target){
     return res;
 }
 
+int entierVersBin(unsigned long long entier){
+
+      unsigned long long a[128];
+      int i; 
+      for(i=0;entier>0;i++)    
+      {    
+            a[i]=entier%2;    
+            entier=entier/2;
+      }    
+
+      for(i=i-1;i>=0;i--)    
+      {    
+            printf("%d",a[i]);    
+      }
+      return 0;  
+}
+
+
+void afficherAdresseIpDepuisLLU(unsigned long long adresse, FILE *nomFichier){
+      char adresseIPString[33];
+      int compteur = 0;
+
+      for(int i = 31; i >= 0; i--){
+            fprintf(nomFichier, "%d",(adresse >> i) & 1);
+            compteur ++;
+
+            //Le i != 1 permet d'eviter d'ecrire un point à la fin de l'adresse IP
+            if(compteur == 8 && i != 0){
+                  fprintf(nomFichier,".");
+                  compteur = 0;
+            }
+      }
+      adresseIPString[33] = '\0';
+      fprintf(nomFichier,"\n");
+}
 
 

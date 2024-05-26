@@ -29,7 +29,6 @@
 
 
 int main(int argc, char *argv[]){
-
       int aOuvert = 0;
 
       if(argc>1){
