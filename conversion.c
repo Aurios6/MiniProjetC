@@ -30,23 +30,25 @@ int verifierFormat(char *ipAdress){
       int ipAdressIntTab[10];
 
       if (nbOfChar(ipAdress, '.') != 3 || nbOfChar(ipAdress, '/') != 1){
-            fprintf(stderr,"Return 0 nb char . /\n");
-            return 0;
+            fprintf(stderr, "ERREURE : ");
+            fprintf(stderr,"Pas suffisament de \". /\"\n");
+            return 1;
       }
 
       /*
-            Check if  non numerical value in string
+            Verifie la valeur numerique des chaines de caractères
       */
 
       for(int i=0; ipAdress[i] != '\0'; i++){
             if(!isdigit(ipAdress[i]) && ipAdress[i] != '.' && ipAdress[i] != '/'){
-                  fprintf(stderr,"NOT A DIGIT\n");
-                  return 0;
+                  fprintf(stderr, "ERREURE : ");
+                  fprintf(stderr,"Contient une valeur non numerique\n");
+                  return 1;
             }      
       }
 
       /*
-            Change string to int
+            Change string en int
       */
 
       int ipAdressLen = strlen(ipAdress);
@@ -64,40 +66,49 @@ int verifierFormat(char *ipAdress){
       }
 
       /*
-            Check size
+            Verifie la taille
       */
 
       if(indexIpTab!=5){
-            fprintf(stderr,"INVALID IP ADRESS size\n");
-            return 0;
+            fprintf(stderr, "ERREURE : ");
+            fprintf(stderr,"Taille de l'adresse IP invalide\n");
+            return 1;
       }
 
+
       /*
-            Chack value
+            Verifie que la valeur de l'IP est correcte
       */
       
       for(int i = 0; i<indexIpTab;i++){
             if(ipAdressIntTab[i]<0 || ipAdressIntTab[i] > 255){
-                  fprintf(stderr,"INVALID IP ADRESS value\n");
-                  return 0;
+                  fprintf(stderr, "ERREURE : ");
+                  fprintf(stderr,"Valeur de l'adresse IP invalide\n");
+                  return 1;
             }
       }
 
       /*
-            check mask value
+            Verifie que la valeur du masque est correcte
       */
 
       if(ipAdressIntTab[4] < 0 || ipAdressIntTab[4] > 32){
-            fprintf(stderr,"INVALID IP ADRESS mask\n");
-            return 0;
+            fprintf(stderr, "ERREURE : ");
+            fprintf(stderr,"Masque de l'adresse IP invalide\n");
+            return 1;
       }
 
-      return 1;
+      return 0;
 }
 
-char* scopeExtract(char *ipAdress,char **returnArray){
+char* extractionDesChamps(char *ipAdress,char **returnArray){
       char *start = ipAdress;
       char *end;
+
+      /*
+            Retourne un tableau de string depuis le pointeur pris en paramètre
+      */
+
 
       int i = 0;
       while ((end = strchr(start, '.')) || (end = strchr(start, '/'))) {
@@ -108,12 +119,13 @@ char* scopeExtract(char *ipAdress,char **returnArray){
             if(!memcpy(returnArray[i], start, size))
                   fprintf(stderr,"Erreur lors de la copie du contenu de l'addresse IP a l'octet %d.\n", i);
             returnArray[i++][size] = '\0';
-            
-            
-
             start = end + 1;
       }
-      //Return the mask
+
+      /*
+            Retourne le masque
+      */
+
       return start;
 }
 
@@ -125,29 +137,82 @@ void convertToInt(char **ipAdressArrayString, char *maskString, int* ipAdressArr
 }
 
 
-void global(char *ipAdress){
-      printf("AdressIP : %s\n", ipAdress);
+char *decoderIP(int *tab) {
+        if (tab[0] >= 0 && tab[0] <= 127 && tab[0] == 10) {
+            return "Class A et est prive";
+        }
+        else if (tab[0] >= 0 && tab[0] <= 127 && tab[0] != 10) {
+            return "Class A et est public";
+        }
+        else if (tab[0] == 172 && tab[1] >= 16 && tab[1] <=31) {
+            return "Class B et est prive";
+        }
+        else if (tab[0] >= 128 && tab[0] <= 191) {
+            return "Class B et est public";
+        }else if (tab[0] >= 192 && tab[1] ==168) {
+            return "Class C et est prive";
+        }
+        else if (tab[0] >= 192 && tab[0] <= 223) {
+            return "Class C et est public";
+        } else if (tab[0] >= 224 && tab[0] <= 239) {
+            return "Class D et est multicast";
+        } else if (tab[0] >= 240 && tab[0] <= 255) {
+            return "Class E et est experimental";
+      }
 
-      char* extractedScope[4];
+        return " invalide";
+}
+
+
+void global(char *ipAdress, int *aOuvert){
+
+      /*
+            Verifie si le fichier a déja été ouvert depuis la première exécution du programme
+            pour eviter d'écraser le contenu du fichier
+      */
+
+      char *modeOuverture;
+      if(aOuvert == 0){
+            modeOuverture = "w";
+            aOuvert = 1;
+      }else{
+            modeOuverture = "a";
+      }
+
+      FILE *fichierSortie = fopen("fichierDeSortie.txt", modeOuverture);
+      if(fichierSortie == NULL){
+            fprintf(stderr, "Le fichier n'a pas pu etre créé ni ouvert");
+            return;
+      }
+
+      /*
+            Interprète le résultat des différentes fonctions
+      */
+
+      char* champsExtraitString[4];
       char *mask;
       int ipAdressArrayInt[4];
       int maskInt;
       
-      if (verifierFormat(ipAdress) == 0){
-            printf("ERREUR\n");
+      if (verifierFormat(ipAdress) == 1){
+            return;
       }else{
-            mask = scopeExtract(ipAdress,extractedScope);
-            convertToInt(extractedScope,mask,ipAdressArrayInt,&maskInt);
-
+            mask = extractionDesChamps(ipAdress,champsExtraitString);
+            convertToInt(champsExtraitString,mask,ipAdressArrayInt,&maskInt);
 
             //affichage
-            for(int i=0;i<4;i++ ){
-                  printf("%d ",ipAdressArrayInt[i]);
+
+            fprintf(fichierSortie, "L'adresse IP : %d.%d.%d.%d:%d \n", ipAdressArrayInt[0], ipAdressArrayInt[1], ipAdressArrayInt[2], ipAdressArrayInt[3], maskInt);
+            fprintf(fichierSortie, "Est de type %s ",decoderIP(ipAdressArrayInt));
+            fprintf(fichierSortie, "et dont masque est \n\n");
+            
+            fclose(fichierSortie);
+
+            // champsExtraitString n'a plus d'utilité il faut donc libérer le mémoire
+            for(int indexExScope = 0 ; indexExScope < 4 ; indexExScope++){
+                  free(champsExtraitString[indexExScope]);
             }
-            printf("/");
-            printf("%d\n",maskInt);
       }
-      printf("\n");
 }
 
 
@@ -163,30 +228,5 @@ int nbOfChar (char *str, char target){
     return res;
 }
 
-char *decoderIP(int *tab) {
 
-        if (tab[0] >= 0 && tab[0] <= 127 && tab[0] == 10) {
-            return "Classe A, privee";
-        }
-         else if (tab[0] >= 0 && tab[0] <= 127 && tab[0] != 10) {
-            return "Class A, publique";
-        }
-         else if (tab[0] == 172 && tab[1] >= 16 && tab[1] <=31) {
-            return "Class B, privee";
-        }
-         else if (tab[0] >= 128 && tab[0] <= 191) {
-            return "Class B, publique";
-        }else if (tab[0] >= 192 && tab[1] ==168) {
-            return "Class C, privee";
-        }
-            else if (tab[0] >= 192 && tab[0] <= 223) {
-            return "Class C, publique";
-        } 
-        else if (tab[0] >= 224 && tab[0] <= 239) {
-            return "Class D, adresse multicast";
-        } 
-        else if (tab[0] >= 240 && tab[0] <= 255) {
-            return "Class E, adresse experimentale";
-      }
-           return "Classe invalide";
-}
+

@@ -26,24 +26,37 @@
 
 #include <stdio.h>
 #include "conversion.h"
-#include "auxiliaryFunction.h"
 
 
-int main(){
-      //affTest();
-      char* ipTest = "145.79.198.6/24";
-      char* ipTest2 = "175.79.198.675/24";
-      char* ipTest3 = "145.79.18.6/24";
-      char* ipTest4 = ".../";
-      
-      //Valeur de retour
-      char **returnArrayString;
-      char *returnMask;
+int main(int argc, char *argv[]){
 
-     global(ipTest);
-     global(ipTest2);
-     global(ipTest3);
-     global(ipTest4);
+      int aOuvert = 0;
+
+      if(argc>1){
+            char *fileName = argv[1];
+            FILE *file = fopen(fileName, "r");
+            if (file == NULL){
+                  fprintf(stderr, "Erreur ouverture du fichier\n");
+                  return 1;
+            }
+            
+            //Lis le fichier en entrer
+            char line[100];
+            while(fgets(line,sizeof(line), file) != NULL){
+                  char *newline_ptr = strchr(line, '\n');
+                  if (newline_ptr != NULL) {
+                        *newline_ptr = '\0';
+                  }
+                  global(line,&aOuvert);
+            }
+            fclose(file);
+      }else{
+            char ipAdress;
+
+            printf("Veuillez entrer une adress IP: ");
+            scanf("%s", &ipAdress);
+            global(&ipAdress, &aOuvert); 
+      }
 
       //décode IP
       int tabAPriv[4] = {10,0,0,1};
