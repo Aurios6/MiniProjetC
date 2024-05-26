@@ -4,10 +4,10 @@ Ce projet est un projet scolaire fait dans le cadre de l'apprentissage de la pro
 
 ## Pour commencer
 
-Ce projet supporte l'utilisation de fichier ``.txt`` en entrer. Pour ce faire il suffira a l'éxection d'indiquer un fichier ``.txt`` de la façon suivante ``./main votreFichier.txt``.\
-Ce n'est cependant pas un prérequis une version avec entrer dans la console est aussi integrer directement. Il suffit de ne pas fournir de fichier lors de l'exectuon du programme.
+Ce projet supporte l'utilisation de fichier ``.txt`` en entrer. Pour ce faire, il suffira à l'exécution d'indiquer un fichier ``.txt`` de la façon suivante ``./main votreFichier.txt``.\
+Ce n'est cependant pas un prérequis, une version avec entrer dans la console est aussi intégrer directement. Il suffit de ne pas fournir de fichier lors de l'exécution du programme.
 
-Ce projet à été fait par:
+Ce projet a été fait par :
 
 * Aurélien Vincent--Randonnier _alias_ [@Aurrios6](https://github.com/Aurios6)
 * Nathanel Daunis _alias_ [@Stefffox](https://github.com/Stefffox)
@@ -20,57 +20,56 @@ Lisez la liste des [contributeurs](https://github.com/Aurios6/MiniProjetC/contri
 
 * Paramètre d'entrer --> char []
 * Paramètre de sortie --> int
-Déclenche une erreur si le fichier pris en paramètre n'a pas pu être ouvert
+Déclenche une erreur si le fichier pris en paramètre n'a pas pu être ouvert.
 
 #### Fichier conversion.c
 
 * verifierFormat :
-  E : une chaine de caractere  
-  S : int (1 si le résultat n'est pas valide, 0 sinon)  
-  Err : Si l'adresse IP possède un format invalide  
+E : une chaîne de caractère  
+S : int (1 si le résultat n'est pas valide, 0 sinon)  
+Err : si l'adresse IP possède un format invalide  
 * extractionDesChamps
-  E : une chaine de caractere (l'adresse IP), une liste de chaine de caractere  
-  S : une chaine de caracter (le masque au format ``string``)  
-  Err : A l'allocation mémoire, a l'éxéction de ``memcpy``  
+E : une chaîne de caractère (l'adresse IP), une liste de chaîne de caractère  
+S : une chaîne de caractère (le masque au format ``string``)  
+Err : à l'allocation mémoire, a l'exécution de ``memcpy``  
 * convertToInt :
-  E : les 2 chaine de caracter avec les valeurs IP et le masque au format ``string``, retourn les valeurs IP et le masque au format ``int``   
-  S : void  
-  Err : Si l'adresse IP possède un format invalide  
+E : les 2 chaîne de caractère avec les valeurs IP et le masque au format ``string``, retourne les valeurs IP et le masque au format ``int``   
+S : void  
+Err : Si l'adresse IP possède un format invalide  
 * verifierFormat :
-  E : un tableau d'entier (l'adresse IP sans le masque)  
-  S : une chaine de caractere indiquant la classe de l'adresse IP  
-  Err : Si l'adresse IP possède un format invalide
-* global -- C'est la fonction qui appel les autres et lance l'écriture dans un fichier
-  E : une chain de carctere (l'adrsse IP au format ``string``, un entier indiquant que le fichier a deja été ouvert (permet de ne pas ecrasé le contenu si plusieur adresse ip sont fournis)
-  S : void (fais uniquement de l'affichage)
-  Err : Si le fichier dans lequel les réponse vont etre ecrite n'a pas pu être ouvert /créé
+E : un tableau d'entier (l'adresse IP sans le masque)  
+S : une chaîne de caractère indiquant la classe de l'adresse IP  
+Err : Si l'adresse IP possède un format invalide
+* global -- La fonction qui appelle les autres et lance l'écriture dans un fichier
+E : une chaîne de caractère (L'adresse IP au format ``string``, un entier indiquant que le fichier a déjà été ouvert)(permet de ne pas écrase le contenu si plusieurs adresse ip sont fournis)  
+S : void (fais uniquement de l'affichage)  
+Err : Si le fichier dans lequel les réponses vont être écrite n'a pas pu être ouvert/créé
+* nbOfChar
+E : une chaîne de caractère, la caractèrecible a compté.  
+s : un entier égale au nombre de caractère cible  
+Err : none  
 
 
 ### Pré-requis
 
-Aucune libraire extèrieur n'est utilisé dans ce projet.
+  Aucune libraire extérieure n'est utilisée dans ce projet.
 
 ### Installation
 
-Les étapes pour installer votre programme....
-
-Dites ce qu'il faut faire...
-
-Exectuer la commande ``./main votreFichier.txt`` ou bien ``./main`` depuis le repertoir du projet.
+  Exécuter la commande ``./main votreFichier.txt`` ou bien ``./main`` depuis le répertoire du projet.
 
 
-Vous devriez obtenir un résultat semblable à celui ci -->
+Vous devriez obtenir un résultat semblable à celui-ci -->
 
 ## Fabriqué avec
 
-Ce projet à été conçu exlusivement avec :
+  Ce projet a été conçu exclusivement avec :
 
-_exemples :_
-* [VisualStudioCode](https://code.visualstudio.com)
+  * [VisualStudioCode](https://code.visualstudio.com)
 
 
 ## Versions
-Une seul version est disponible pour le moment
+  Une seule version est disponible pour le moment.
 
 **Dernière version stable :** 1.0  
 **Dernière version :** 1.0
@@ -83,4 +82,3 @@ Listez le(s) auteur(s) du projet ici !
 ## License
 
 Ce projet est sous licence `MIT License`` - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
-
