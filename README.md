@@ -15,8 +15,8 @@ Ce projet a été fait par :
 Lisez la liste des [contributeurs](https://github.com/Aurios6/MiniProjetC/contributors) pour voir qui à aidé au projet !
 
 ### Fonction
-
-[LeProjet](https://github.com/Aurios6/MiniProjetC)
+[LeProjetGitLab](https://gitlab.info.iut-tlse3.fr/vnr4817a/MiniProjetC)
+[LeProjetGitHub](https://github.com/Aurios6/MiniProjetC)
 
 #### Fichier main.c
 
