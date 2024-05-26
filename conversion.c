@@ -173,7 +173,6 @@ void decoderMasqueIP(int *arrayIp, int masque, FILE *nomFichier){
             Conversion de l'adresse IP en entier pour ensuite utiliser les oppérateurs sur les bits
       */
 
-     
       for(int j = 0; j < 4; j++){
             ipAdressFull |= (unsigned int)(arrayIp[j]);
             if(j!=3){
@@ -182,20 +181,18 @@ void decoderMasqueIP(int *arrayIp, int masque, FILE *nomFichier){
       }
      
      /*
-      convertis le masque en long long pour ensuite utiliser les oppérateurs sur les bits
+            convertis le masque en long long pour ensuite utiliser les oppérateurs sur les bits
      */
 
-    // 
-
-      
+      // permet d'obtenir un entier ayant pour écriture binaire le masque IP
       int puissance = 32 - masque;
-      unsigned long long val = 1;
-      for(int k = 0; k<puissance;k++){
-            val *= 2;
+      unsigned long long puissance = 1;
+      for(int indicePuiss = 0; indicePuiss<puissance;indicePuiss++){
+            puissance *= 2;
       }
-      
-      masqueComplet = 4294967296 - val;
+      masqueComplet = 4294967296 - puissance;
 
+      //manipulation sur les bits
       unsigned long long adresseReseaux = ipAdressFull & masqueComplet;
       unsigned long long adresseHote = ipAdressFull & ~masqueComplet;
 
@@ -262,7 +259,6 @@ void global(char *ipAdress, int *aOuvert){
 
 
 int nbOfChar (char *str, char target){
-    
     int res = 0;
 
     for(int i=0; str[i] != '\0'; i++){
@@ -274,17 +270,14 @@ int nbOfChar (char *str, char target){
 }
 
 int entierVersBin(unsigned long long entier){
-
       unsigned long long a[128];
       int i; 
-      for(i=0;entier>0;i++)    
-      {    
+      for(i=0;entier>0;i++){    
             a[i]=entier%2;    
             entier=entier/2;
       }    
 
-      for(i=i-1;i>=0;i--)    
-      {    
+      for(i=i-1;i>=0;i--){    
             printf("%d",a[i]);    
       }
       return 0;  
@@ -308,5 +301,3 @@ void afficherAdresseIpDepuisLLU(unsigned long long adresse, FILE *nomFichier){
       adresseIPString[33] = '\0';
       fprintf(nomFichier,"\n");
 }
-
-
