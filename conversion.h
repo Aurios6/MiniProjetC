@@ -30,10 +30,9 @@
 #include <string.h>
 #include <ctype.h>
 
-void affTest();
 int verifierFormat(char *ipAdress);
-char* scopeExtract(char *ipAdress, char **returnArray);
+char* extractionDesChamps(char *ipAdress, char **returnArray);
 void convertToInt(char **ipAdressArrayString, char *maskString, int* ipAdressArrayInt, int *maskInt );
-char *checkClass(int *tab);
+char *decoderIP(int *tab);
 void global(char *ipAdress, int *aOuvert);
 int nbOfChar (char *str, char target);

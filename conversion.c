@@ -30,23 +30,25 @@ int verifierFormat(char *ipAdress){
       int ipAdressIntTab[10];
 
       if (nbOfChar(ipAdress, '.') != 3 || nbOfChar(ipAdress, '/') != 1){
-            fprintf(stderr,"Pas suffisament de . /\n");
+            fprintf(stderr, "ERREURE : ");
+            fprintf(stderr,"Pas suffisament de \". /\"\n");
             return 1;
       }
 
       /*
-            Check if  non numerical value in string
+            Verifie la valeur numerique des chaines de caractères
       */
 
       for(int i=0; ipAdress[i] != '\0'; i++){
             if(!isdigit(ipAdress[i]) && ipAdress[i] != '.' && ipAdress[i] != '/'){
+                  fprintf(stderr, "ERREURE : ");
                   fprintf(stderr,"Contient une valeur non numerique\n");
                   return 1;
             }      
       }
 
       /*
-            Change string to int
+            Change string en int
       */
 
       int ipAdressLen = strlen(ipAdress);
@@ -64,31 +66,34 @@ int verifierFormat(char *ipAdress){
       }
 
       /*
-            Check size
+            Verifie la taille
       */
 
       if(indexIpTab!=5){
+            fprintf(stderr, "ERREURE : ");
             fprintf(stderr,"Taille de l'adresse IP invalide\n");
             return 1;
       }
 
 
       /*
-            Chack value
+            Verifie que la valeur de l'IP est correcte
       */
       
       for(int i = 0; i<indexIpTab;i++){
             if(ipAdressIntTab[i]<0 || ipAdressIntTab[i] > 255){
+                  fprintf(stderr, "ERREURE : ");
                   fprintf(stderr,"Valeur de l'adresse IP invalide\n");
                   return 1;
             }
       }
 
       /*
-            check mask value
+            Verifie que la valeur du masque est correcte
       */
 
       if(ipAdressIntTab[4] < 0 || ipAdressIntTab[4] > 32){
+            fprintf(stderr, "ERREURE : ");
             fprintf(stderr,"Masque de l'adresse IP invalide\n");
             return 1;
       }
@@ -99,6 +104,11 @@ int verifierFormat(char *ipAdress){
 char* extractionDesChamps(char *ipAdress,char **returnArray){
       char *start = ipAdress;
       char *end;
+
+      /*
+            Retourne un tableau de string depuis le pointeur pris en paramètre
+      */
+
 
       int i = 0;
       while ((end = strchr(start, '.')) || (end = strchr(start, '/'))) {
@@ -111,7 +121,11 @@ char* extractionDesChamps(char *ipAdress,char **returnArray){
             returnArray[i++][size] = '\0';
             start = end + 1;
       }
-      //Return the mask
+
+      /*
+            Retourne le masque
+      */
+
       return start;
 }
 
@@ -152,6 +166,11 @@ char *decoderIP(int *tab) {
 
 void global(char *ipAdress, int *aOuvert){
 
+      /*
+            Verifie si le fichier a déja été ouvert depuis la première exécution du programme
+            pour eviter d'écraser le contenu du fichier
+      */
+
       char *modeOuverture;
       if(aOuvert == 0){
             modeOuverture = "w";
@@ -165,7 +184,10 @@ void global(char *ipAdress, int *aOuvert){
             fprintf(stderr, "Le fichier n'a pas pu etre créé ni ouvert");
             return;
       }
-      printf("AdressIP : %s\n", ipAdress);
+
+      /*
+            Interprète le résultat des différentes fonctions
+      */
 
       char* champsExtraitString[4];
       char *mask;

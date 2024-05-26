@@ -16,6 +16,8 @@ Lisez la liste des [contributeurs](https://github.com/Aurios6/MiniProjetC/contri
 
 ### Fonction
 
+[LeProjet](https://github.com/Aurios6/MiniProjetC)
+
 #### Fichier main.c
 
 * Paramètre d'entrer --> char []
@@ -71,7 +73,7 @@ Vous devriez obtenir un résultat semblable à celui-ci -->
 ## Versions
   Une seule version est disponible pour le moment.
 
-**Dernière version stable :** 1.0  
+**Dernière version stable :** 1.0 
 **Dernière version :** 1.0
 
 
