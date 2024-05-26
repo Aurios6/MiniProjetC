@@ -29,7 +29,6 @@
 
 
 int main(int argc, char *argv[]){
-      int aOuvert = 0;
 
       if(argc>1){
             char *fileName = argv[1];
@@ -46,7 +45,7 @@ int main(int argc, char *argv[]){
                   if (newline_ptr != NULL) {
                         *newline_ptr = '\0';
                   }
-                  global(line,&aOuvert);
+                  global(line);
             }
             fclose(file);
       }else{
@@ -54,7 +53,7 @@ int main(int argc, char *argv[]){
 
             printf("Veuillez entrer une adress IP: ");
             scanf("%s", &ipAdress);
-            global(&ipAdress, &aOuvert); 
+            global(&ipAdress); 
       }
 
       return 0;

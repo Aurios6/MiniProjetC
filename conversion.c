@@ -186,9 +186,9 @@ void decoderMasqueIP(int *arrayIp, int masque, FILE *nomFichier){
 
       // permet d'obtenir un entier ayant pour écriture binaire le masque IP
       int puissance = 32 - masque;
-      unsigned long long puissance = 1;
+      unsigned long long puissanceRes = 1;
       for(int indicePuiss = 0; indicePuiss<puissance;indicePuiss++){
-            puissance *= 2;
+            puissanceRes *= 2;
       }
       masqueComplet = 4294967296 - puissance;
 
@@ -205,22 +205,11 @@ void decoderMasqueIP(int *arrayIp, int masque, FILE *nomFichier){
 }
 
 
-void global(char *ipAdress, int *aOuvert){
+void global(char *ipAdress){
 
-      /*
-            Verifie si le fichier a déja été ouvert depuis la première exécution du programme
-            pour eviter d'écraser le contenu du fichier
-      */
 
-      char *modeOuverture;
-      if(*aOuvert == 0){
-            modeOuverture = "w";
-            *aOuvert = 1;
-      }else{
-            modeOuverture = "a";
-      }
 
-      FILE *fichierSortie = fopen("fichierDeSortie.txt", modeOuverture);
+      FILE *fichierSortie = fopen("fichierDeSortie.txt", "a");
       if(fichierSortie == NULL){
             fprintf(stderr, "Le fichier n'a pas pu etre créé ni ouvert");
             return;
